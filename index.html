@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Mission</title>
+    <title>Site ACB - Menu Mission</title>
     <style>
         :root {
-            --main-color: #2c4c64; /* Couleur bleue de l'image */
-            --border-thickness: 2px;
+            /* Couleurs extraites de la charte graphique logo_acb.pdf */
+            --primary-color: #ed6d5f; 
+            --dark-color: #130027;
+            --font-main: 'Metropolis', sans-serif; /* Police mentionnée dans le doc */
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: var(--font-main), Arial, sans-serif;
             background-color: #ffffff;
         }
 
-        /* 1. Rendre le menu FIXE en haut */
+        /* Menu Fixé */
         .header-fixed {
             position: fixed;
             top: 0;
@@ -25,41 +27,37 @@
             width: 100%;
             background-color: white;
             z-index: 1000;
+            padding-top: 20px;
         }
 
-        /* La ligne horizontale qui traverse toute la largeur */
-        .nav-border-line {
-            border-bottom: var(--border-thickness) solid var(--main-color);
-            position: absolute;
-            bottom: 0;
+        /* Ligne fine avec dégradé (Fade out sur les bords) */
+        .nav-separator {
+            height: 1px;
             width: 100%;
-            z-index: 1;
+            background: linear-gradient(to right, transparent, var(--dark-color), transparent);
+            margin-top: 10px;
         }
 
-        /* 2. CENTRAGE du contenu */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2; /* Passe au dessus de la ligne */
+            text-align: center;
         }
 
+        /* Logo centré au-dessus */
+        .logo-container {
+            margin-bottom: 15px;
+        }
+
+        .logo-img {
+            height: 60px; /* Ajustable selon le rendu souhaité */
+            display: inline-block;
+        }
+
+        /* Menu centré */
         .navbar {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end; /* Aligne le texte sur la ligne du bas */
-            height: 80px;
-        }
-
-        .logo {
-            padding-bottom: 15px;
-            color: var(--main-color);
-            font-size: 20px;
-            text-transform: lowercase;
-        }
-
-        .nav-links {
-            display: flex;
+            justify-content: center;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -67,59 +65,73 @@
 
         .nav-item {
             position: relative;
+            margin: 0 15px;
         }
 
         .nav-link {
             text-decoration: none;
-            color: var(--main-color);
-            padding: 0 20px 15px 20px; /* Espace bas pour toucher la ligne */
-            display: block;
+            color: var(--dark-color);
+            font-weight: 500;
             font-size: 16px;
+            padding: 10px 15px;
+            display: block;
+            cursor: pointer;
+            transition: color 0.3s;
         }
 
-        /* 3. L'ENCADRÉ pour "Mission" */
-        .nav-item.active-mission {
-            border-left: var(--border-thickness) solid var(--main-color);
-            border-right: var(--border-thickness) solid var(--main-color);
-            border-top: var(--border-thickness) solid var(--main-color);
-            background: white;
-            margin-bottom: -2px; /* Fusionne avec la ligne horizontale */
+        .nav-link:hover {
+            color: var(--primary-color);
         }
 
-        /* 4. LE MENU DÉROULANT (Formations, etc.) */
+        /* Gestion du clic pour le sous-menu (Pure CSS) */
+        #mission-toggle {
+            display: none;
+        }
+
+        /* Sous-menu masqué par défaut */
         .dropdown-menu {
+            display: none;
             position: absolute;
             top: 100%;
-            left: -2px; /* Aligné avec la bordure gauche */
-            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
             background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            padding: 10px 0;
             list-style: none;
-            margin: 0;
-            padding: 20px 0;
-            border-left: var(--border-thickness) solid var(--main-color);
-            border-right: var(--border-thickness) solid var(--main-color);
-            border-bottom: var(--border-thickness) solid var(--main-color);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            text-align: center;
-        }
-
-        .dropdown-link {
-            text-decoration: none;
-            color: var(--main-color);
-            font-size: 18px;
-        }
-
-        .dropdown-link.small {
-            font-size: 11px;
+            z-index: 1001;
             margin-top: 5px;
         }
 
-        /* Espace pour que le contenu ne soit pas caché sous le menu */
-        .main-content {
-            margin-top: 150px;
-            padding: 20px;
+        .dropdown-item a {
+            text-decoration: none;
+            color: var(--dark-color);
+            padding: 10px 20px;
+            display: block;
+            font-size: 14px;
+        }
+
+        .dropdown-item a:hover {
+            background-color: #f9f9f9;
+            color: var(--primary-color);
+        }
+
+        /* Affichage au clic sur "Mission" */
+        #mission-toggle:checked ~ .dropdown-menu {
+            display: block;
+        }
+
+        /* Style spécifique pour l'onglet actif ou cliquable */
+        .mission-label {
+            cursor: pointer;
+        }
+
+        /* Contenu pour le scroll */
+        .content {
+            margin-top: 180px;
+            padding: 50px;
             text-align: center;
         }
     </style>
@@ -127,20 +139,22 @@
 <body>
 
     <header class="header-fixed">
-        <div class="nav-border-line"></div>
         <div class="container">
-            <nav class="navbar">
-                <div class="logo">logo</div>
-                
-                <ul class="nav-links">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Logo ACB" class="logo-img">
+            </div>
+
+            <nav>
+                <ul class="navbar">
                     <li class="nav-item"><a href="#" class="nav-link">Présentation</a></li>
                     
-                    <li class="nav-item active-mission">
-                        <a href="#" class="nav-link">Mission</a>
+                    <li class="nav-item">
+                        <input type="checkbox" id="mission-toggle">
+                        <label for="mission-toggle" class="nav-link mission-label">Mission ▾</label>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-link">Formations</a></li>
-                            <li><a href="#" class="dropdown-link">Soutien aux églises</a></li>
-                            <li><a href="#" class="dropdown-link small">Accompagnement</a></li>
+                            <li class="dropdown-item"><a href="#">Formations</a></li>
+                            <li class="dropdown-item"><a href="#">Soutien aux églises</a></li>
+                            <li class="dropdown-item"><a href="#">Accompagnement</a></li>
                         </ul>
                     </li>
                     
@@ -150,12 +164,13 @@
                 </ul>
             </nav>
         </div>
+        <div class="nav-separator"></div>
     </header>
 
-    <main class="main-content">
-        <h1>Contenu de votre site</h1>
-        <p>Faites défiler pour voir le menu rester figé en haut.</p>
-        <div style="height: 2000px;"></div> </main>
+    <main class="content">
+        <h1>Bienvenue</h1>
+        <p>Bienvenue sur le site de l'ACB</p>
+        <div style="height: 1000px;"></div> </main>
 
 </body>
 </html>
