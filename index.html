@@ -1,120 +1,161 @@
 <!DOCTYPE html>
 <html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Mission</title>
+    <style>
+        :root {
+            --main-color: #2c4c64; /* Couleur bleue de l'image */
+            --border-thickness: 2px;
+        }
 
-:root {
-  --main-color: #2c4c64; /* La couleur bleue de ton image */
-  --border-thickness: 2px;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
 
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  color: var(--main-color);
-}
+        /* 1. Rendre le menu FIXE en haut */
+        .header-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 1000;
+        }
 
-/* 1. Menu Figé (Sticky) */
-.header-fixed {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: white;
-  z-index: 1000;
-  border-bottom: var(--border-thickness) solid var(--main-color); /* Ligne horizontale */
-}
+        /* La ligne horizontale qui traverse toute la largeur */
+        .nav-border-line {
+            border-bottom: var(--border-thickness) solid var(--main-color);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 1;
+        }
 
-/* 2. Contenu Centré */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+        /* 2. CENTRAGE du contenu */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2; /* Passe au dessus de la ligne */
+        }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
-}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end; /* Aligne le texte sur la ligne du bas */
+            height: 80px;
+        }
 
-.nav-links {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
+        .logo {
+            padding-bottom: 15px;
+            color: var(--main-color);
+            font-size: 20px;
+            text-transform: lowercase;
+        }
 
-.nav-links > li {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
 
-.nav-links a {
-  text-decoration: none;
-  color: var(--main-color);
-  padding: 0 15px;
-  font-size: 16px;
-}
+        .nav-item {
+            position: relative;
+        }
 
-/* 3. Style spécifique pour "Mission" (Encadré) */
-.dropdown {
-  border-left: var(--border-thickness) solid var(--main-color);
-  border-right: var(--border-thickness) solid var(--main-color);
-  border-top: var(--border-thickness) solid var(--main-color);
-  background: white;
-}
+        .nav-link {
+            text-decoration: none;
+            color: var(--main-color);
+            padding: 0 20px 15px 20px; /* Espace bas pour toucher la ligne */
+            display: block;
+            font-size: 16px;
+        }
 
-/* 4. Le Menu Déroulant */
-.dropdown-menu {
-  position: absolute;
-  top: 100%; /* Se place juste en dessous de la ligne bleue */
-  left: -2px; /* Aligné avec la bordure gauche du parent */
-  width: calc(100% + 4px); /* Pour couvrir les bordures */
-  background: white;
-  list-style: none;
-  margin: 0;
-  padding: 20px 0;
-  border-left: var(--border-thickness) solid var(--main-color);
-  border-right: var(--border-thickness) solid var(--main-color);
-  border-bottom: var(--border-thickness) solid var(--main-color);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+        /* 3. L'ENCADRÉ pour "Mission" */
+        .nav-item.active-mission {
+            border-left: var(--border-thickness) solid var(--main-color);
+            border-right: var(--border-thickness) solid var(--main-color);
+            border-top: var(--border-thickness) solid var(--main-color);
+            background: white;
+            margin-bottom: -2px; /* Fusionne avec la ligne horizontale */
+        }
 
-.dropdown-menu li a {
-  display: block;
-  font-size: 18px;
-  text-align: center;
-}
+        /* 4. LE MENU DÉROULANT (Formations, etc.) */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: -2px; /* Aligné avec la bordure gauche */
+            width: 100%;
+            background: white;
+            list-style: none;
+            margin: 0;
+            padding: 20px 0;
+            border-left: var(--border-thickness) solid var(--main-color);
+            border-right: var(--border-thickness) solid var(--main-color);
+            border-bottom: var(--border-thickness) solid var(--main-color);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
 
-.dropdown-menu li a.small-text {
-  font-size: 12px;
-  margin-top: 10px;
-}  
-  
-  <header class="header-fixed">
-  <div class="container">
-    <nav class="navbar">
-      <div class="logo">LOGO</div>
-      <ul class="nav-links">
-        <li><a href="#">Présentation</a></li>
-        <li class="dropdown">
-          <a href="#" class="active">Mission</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Formations</a></li>
-            <li><a href="#">Soutien aux églises</a></li>
-            <li><a href="#" class="small-text">Accompagnement</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Nous soutenir</a></li>
-        <li><a href="#">Prise de rdv</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+        .dropdown-link {
+            text-decoration: none;
+            color: var(--main-color);
+            font-size: 18px;
+        }
 
-<!-- Spacer pour éviter que le contenu ne passe sous le menu fixe -->
-<div style="height: 100px;"></div>
+        .dropdown-link.small {
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        /* Espace pour que le contenu ne soit pas caché sous le menu */
+        .main-content {
+            margin-top: 150px;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-fixed">
+        <div class="nav-border-line"></div>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">logo</div>
+                
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="#" class="nav-link">Présentation</a></li>
+                    
+                    <li class="nav-item active-mission">
+                        <a href="#" class="nav-link">Mission</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-link">Formations</a></li>
+                            <li><a href="#" class="dropdown-link">Soutien aux églises</a></li>
+                            <li><a href="#" class="dropdown-link small">Accompagnement</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item"><a href="#" class="nav-link">Nous soutenir</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Prise de rdv</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1>Contenu de votre site</h1>
+        <p>Faites défiler pour voir le menu rester figé en haut.</p>
+        <div style="height: 2000px;"></div> </main>
+
+</body>
+</html>
