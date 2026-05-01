@@ -20,20 +20,23 @@
             --bg-glass: rgba(255, 255, 255, 0.95);
         }
 
-        html {
-            scroll-behavior: smooth;
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
         }
 
         body {
-            margin: 0;
-            padding: 0;
             font-family: var(--font-family);
             color: #333;
+            /* Le fond ne s'applique qu'au body, mais on va le stopper avec le footer */
             background-image: url('images/fond.png');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
         }
 
         /* 2. HEADER ET NAVIGATION */
@@ -52,7 +55,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 80px;
+            padding: 0 90px;
             position: relative;
         }
 
@@ -62,7 +65,7 @@
         }
 
         .logo-box img {
-            height: 65px;
+            height: 60px;
             display: block;
             width: auto;
         }
@@ -75,60 +78,26 @@
             gap: 40px;
         }
 
-        .nav-item { position: relative; }
-
         .nav-link {
             text-decoration: none;
             color: var(--main-color);
             font-size: 16px;
             font-weight: 500;
-            cursor: pointer;
             transition: color 0.3s;
         }
 
         .nav-link:hover { color: var(--accent-color); }
-
-        /* SOUS-MENU MISSION */
-        #mission-toggle { display: none; }
-        
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: -15px;
-            background-color: var(--bg-glass);
-            list-style: none;
-            margin: 20px 0 0 0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 200px;
-        }
-
-        .dropdown-item { margin-bottom: 12px; }
-        .dropdown-item a {
-            text-decoration: none;
-            color: var(--main-color);
-            font-size: 14px;
-            display: block;
-            transition: color 0.3s, transform 0.2s;
-        }
-        .dropdown-item a:hover { 
-            color: var(--accent-color);
-            transform: translateX(5px);
-        }
-
-        #mission-toggle:checked ~ .dropdown-menu { display: block; }
 
         /* 3. STRUCTURE DES SECTIONS */
         .main-column {
             width: 50%;
             margin: 0 auto;
             padding-top: 140px;
+            flex: 1; /* Pousse le footer vers le bas */
         }
 
         section {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -146,25 +115,28 @@
         h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
         p { line-height: 1.8; font-size: 1.05em; color: #555; }
 
-        /* 4. SECTION CONTACT (OPTIMISÉE POUR LE BAS DE L'IMAGE) */
+        /* 4. SECTION CONTACT (IMAGE PROPRE ET REHAUSSÉE) */
         footer#contact {
             position: relative;
             width: 100%;
+            /* background-color solide pour "couper" le fond du body */
+            background-color: #000; 
             background-image: url('images/contact.png'); 
             background-size: cover;
-            background-position: bottom center; /* L'image se cale sur le bas */
+            /* center 20% permet de remonter l'image de l'arbre dans le cadre */
+            background-position: center 25%; 
             background-repeat: no-repeat;
-            padding: 150px 0 80px 0; /* Plus d'espace en haut pour voir l'arbre */
+            padding: 120px 0 80px 0;
             color: #ffffff;
-            margin-top: 50px;
-            min-height: 400px; /* Assure une hauteur minimum si peu de texte */
+            z-index: 10; /* Assure de passer au dessus du fond du body */
         }
 
+        /* Voile sombre plus opaque pour bien séparer du reste du site */
         footer#contact::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.45); /* Un peu plus clair pour voir l'image */
+            background-color: rgba(0, 0, 0, 0.65); 
             z-index: 1;
         }
 
@@ -190,9 +162,7 @@
         .contact-column p {
             font-size: 16px;
             line-height: 1.6;
-            color: #f0f0f0;
             margin: 12px 0;
-            text-align: left;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -202,7 +172,7 @@
             display: block;
             margin-left: 30px;
             font-size: 15px;
-            color: #ddd;
+            color: #ccc;
         }
 
     </style>
@@ -214,21 +184,10 @@
             <div class="logo-box">
                 <img src="images/logo.png" alt="Logo ACB">
             </div>
-
             <nav>
                 <ul class="nav-links">
                     <li><a href="#presentation" class="nav-link">Présentation</a></li>
-                    
-                    <li class="nav-item">
-                        <input type="checkbox" id="mission-toggle">
-                        <label for="mission-toggle" class="nav-link">Mission ▾</label>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="#formations">Formations</a></li>
-                            <li class="dropdown-item"><a href="#soutien">Soutien aux églises</a></li>
-                            <li class="dropdown-item"><a href="#accompagnement">Accompagnement</a></li>
-                        </ul>
-                    </li>
-
+                    <li><a href="#formations" class="nav-link">Mission</a></li>
                     <li><a href="#soutenir" class="nav-link">Nous soutenir</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -240,37 +199,12 @@
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
-                <p>Ici, vous pouvez présenter le projet ou la personne. Le fond derrière ne bouge pas pendant que vous lisez ce texte.</p>
+                <p>Bienvenue sur le site de l'Association du Counseling Biblique.</p>
             </div>
         </section>
+        
+        <!-- Ajoutez vos autres sections ici -->
 
-        <section id="formations">
-            <div class="glass-panel">
-                <h2>Nos Formations</h2>
-                <p>Découvrez nos programmes de formation approfondis en counseling biblique.</p>
-            </div>
-        </section>
-
-        <section id="soutien">
-            <div class="glass-panel">
-                <h2>Soutien aux Églises</h2>
-                <p>Nous accompagnons les communautés locales dans leur croissance et leur soin mutuel.</p>
-            </div>
-        </section>
-
-        <section id="accompagnement">
-            <div class="glass-panel">
-                <h2>Accompagnement</h2>
-                <p>Un suivi personnalisé basé sur les principes et l'espérance biblique.</p>
-            </div>
-        </section>
-
-        <section id="soutenir">
-            <div class="glass-panel">
-                <h2>Nous Soutenir</h2>
-                <p>Votre engagement permet à l'association de continuer sa mission auprès du plus grand nombre.</p>
-            </div>
-        </section>
     </div>
 
     <footer id="contact">
