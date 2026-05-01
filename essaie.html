@@ -28,10 +28,12 @@
             margin: 0;
             padding: 0;
             font-family: var(--font-family);
+            color: #333;
             background-image: url('images/fond.png');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* 2. HEADER ET NAVIGATION */
@@ -85,7 +87,7 @@
 
         .nav-link:hover { color: var(--accent-color); }
 
-        /* GESTION DU SOUS-MENU */
+        /* SOUS-MENU MISSION */
         #mission-toggle { display: none; }
         
         .dropdown-menu {
@@ -103,7 +105,6 @@
         }
 
         .dropdown-item { margin-bottom: 12px; }
-        .dropdown-item:last-child { margin-bottom: 0; }
         .dropdown-item a {
             text-decoration: none;
             color: var(--main-color);
@@ -122,7 +123,7 @@
         .main-column {
             width: 50%;
             margin: 0 auto;
-            padding-top: 140px;
+            padding-top: 160px; /* Espace pour le header */
         }
 
         section {
@@ -145,18 +146,13 @@
         h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
         p { line-height: 1.8; font-size: 1.05em; color: #555; }
 
-        /* 4. SECTION CONTACT (LARGEUR TOTALE & SANS LIGNES) */
+        /* 4. FOOTER BANDE BLANCHE SIMPLE */
         footer#contact {
             width: 100%;
-            background-color: #f2f2f2; /* Gris clair pour masquer fond.png */
-            background-image: url('images/contact.png'); 
-            background-size: 100% auto; 
-            background-position: center bottom;
-            background-repeat: no-repeat;
-            padding: 120px 0 60px 0;
-            margin-top: 80px;
-            min-height: 45vw;
-            position: relative;
+            background-color: white; /* Bande blanche opaque */
+            padding: 80px 0;
+            margin-top: 100px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.03);
         }
 
         .contact-container {
@@ -164,16 +160,17 @@
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
             padding: 0 40px;
-            position: relative;
-            z-index: 5;
         }
 
         .contact-column { flex: 1; }
+
         .contact-column h3 {
-            color: #333;
-            font-size: 26px;
+            color: var(--main-color);
+            font-size: 22px;
             margin-bottom: 25px;
+            font-weight: 600;
         }
 
         .contact-column p {
@@ -183,13 +180,14 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            text-align: left;
         }
 
         .address-detail {
             display: block;
             margin-left: 27px;
             font-size: 14px;
-            color: #666;
+            color: #777;
         }
 
     </style>
@@ -228,45 +226,47 @@
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
-                <p>L'Association du Counseling Biblique (ACB) a pour but de promouvoir le soin des âmes basé sur l'autorité et la suffisance des Écritures.</p>
+                <p>L'Association du Counseling Biblique (ACB) œuvre pour la promotion du soin de l'âme à travers les Écritures.</p>
             </div>
         </section>
 
         <section id="formations">
             <div class="glass-panel">
                 <h2>Nos Formations</h2>
-                <p>Nous proposons des programmes de formation théoriques et pratiques pour équiper les chrétiens dans l'aide et l'accompagnement d'autrui.</p>
+                <p>Découvrez nos parcours de formation pour équiper chaque croyant dans l'accompagnement biblique.</p>
             </div>
         </section>
 
         <section id="soutien">
             <div class="glass-panel">
-                <h2>Soutien aux Églises</h2>
-                <p>Nous collaborons avec les églises locales pour les aider à développer une culture de soin mutuel et de discipulat biblique.</p>
+                <h2>Soutien aux églises</h2>
+                <p>Nous aidons les églises locales à mettre en place des ministères de relation d'aide biblique sains et durables.</p>
             </div>
         </section>
 
         <section id="accompagnement">
             <div class="glass-panel">
                 <h2>Accompagnement</h2>
-                <p>Le centre propose un accompagnement personnel basé sur la sagesse biblique pour faire face aux défis de la vie.</p>
+                <p>Un soutien biblique pour traverser les épreuves de la vie avec l'espérance de l'Évangile.</p>
             </div>
         </section>
 
         <section id="soutenir">
             <div class="glass-panel">
-                <h2>Nous Soutenir</h2>
-                <p>Votre engagement et vos dons permettent à l'association de continuer sa mission de formation et d'aide spirituelle.</p>
+                <h2>Nous soutenir</h2>
+                <p>Votre engagement permet à l'association de continuer sa mission auprès du plus grand nombre.</p>
             </div>
         </section>
 
     </div>
 
+    <!-- BANDE BLANCHE CONTACT -->
     <footer id="contact">
         <div class="contact-container">
+            
             <div class="contact-column">
                 <h3>Contactez-nous</h3>
-                <p><span>⌂</span> www.counselingbiblique.org</p>
+                <p><span>🌐</span> www.counselingbiblique.org</p>
                 <p><span>👤</span> David Bouvier</p>
                 <p><span>✉</span> info@counselingbiblique.org</p>
                 <p><span>📱</span> +41 76 483 40 56</p>
@@ -286,6 +286,7 @@
                 <p>1253 Vandoeuvres</p>
                 <p>Suisse</p>
             </div>
+
         </div>
     </footer>
 
