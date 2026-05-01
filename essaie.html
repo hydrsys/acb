@@ -151,39 +151,65 @@
         h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
         p { line-height: 1.8; font-size: 1.05em; color: #555; }
 
-        /* 4. SECTION CONTACT (BANDE BLANCHE BAS DE PAGE) */
-        #contact {
-            min-height: auto;
+        /* 4. SECTION CONTACT AVEC IMAGE DE FOND SOMBRE */
+        footer#contact {
+            position: relative;
             width: 100%;
-            background-color: #ffffff;
-            padding: 60px 0;
-            display: block;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            background-image: url('images/image_1c78b4.jpg'); /* Ton image sombre */
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            color: #ffffff; /* Texte en blanc pour le contraste */
+            margin-top: 50px;
+        }
+
+        /* Voile sombre pour garantir la lisibilité */
+        footer#contact::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+            z-index: 1;
         }
 
         .contact-container {
-            max-width: 1100px;
+            position: relative;
+            z-index: 2; /* Passe au dessus du voile sombre */
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: flex-start;
             padding: 0 40px;
         }
 
-        .contact-info h3 {
-            color: var(--main-color);
-            font-size: 16px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .contact-column {
+            flex: 1;
         }
 
-        .contact-info p {
-            font-size: 14px;
+        .contact-column h3 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .contact-column p {
+            font-size: 16px;
             line-height: 1.6;
-            color: #666;
-            margin: 5px 0;
+            color: #f0f0f0; /* Blanc cassé pour les paragraphes */
+            margin: 8px 0;
             text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .address-detail {
+            display: block;
+            margin-left: 26px;
+            font-size: 15px;
+            color: #ddd;
         }
 
     </style>
@@ -218,9 +244,7 @@
         <div class="nav-separator"></div>
     </header>
 
-    <!-- COLONNE CENTRALE POUR LE CONTENU -->
     <div class="main-column">
-        
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
@@ -255,29 +279,33 @@
                 <p>Votre engagement permet à l'association de continuer sa mission auprès du plus grand nombre.</p>
             </div>
         </section>
+    </div>
 
-    </div> <!-- FIN DE LA COLONNE CENTRALE -->
-
-    <!-- SECTION CONTACT (FOOTER) -->
+    <!-- FOOTER AVEC TON IMAGE DE FOND ET LES INFOS DU CIB -->
     <footer id="contact">
         <div class="contact-container">
             
-            <div class="contact-info">
-                <h3>Contact</h3>
-                <p><strong>Email :</strong> contact@acb-counseling.fr</p>
-                <p><strong>Téléphone :</strong> +33 (0)1 00 00 00 00</p>
+            <div class="contact-column">
+                <h3>Contactez-nous</h3>
+                <p><span>⌂</span> www.counselingbiblique.org</p>
+                <p><span>👤</span> David Bouvier</p>
+                <p><span>✉</span> info@counselingbiblique.org</p>
+                <p><span>📱</span> +41 76 483 40 56</p>
             </div>
 
-            <div class="contact-info">
-                <h3>Localisation</h3>
-                <p>Paris, France</p>
-                <p>Intervention dans toute la francophonie</p>
+            <div class="contact-column">
+                <h3>Centre de counseling</h3>
+                <p><span>📍</span> (Eglise Evangélique Action Biblique)</p>
+                <span class="address-detail">Rue de la Servette 21</span>
+                <span class="address-detail">1201 Genève</span>
+                <span class="address-detail">Suisse</span>
             </div>
 
-            <div class="contact-info">
-                <h3>Association ACB</h3>
-                <p>© 2026 Association du Counseling Biblique</p>
-                <p>Tous droits réservés.</p>
+            <div class="contact-column">
+                <h3>Siège social</h3>
+                <p>Route de la Capite 120</p>
+                <p>1253 Vandoeuvres</p>
+                <p>Suisse</p>
             </div>
 
         </div>
