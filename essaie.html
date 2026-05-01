@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACB - Association du Counseling Biblique</title>
+    <style>
+        /* Définition de la police Metropolis */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('fonts/Metropolis-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --main-color: #2c4c64;
+            --font-family: 'Metropolis', sans-serif;
+            --accent-color: #ed6d5f;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family);
+            color: #333;
+            /* 1. IMAGE DE FOND CENTRÉE ET DÉZOOMÉE */
+            background-image: url('images/fond.png');
+            background-attachment: fixed;
+            background-size: 80%; /* Dézoome l'image */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #fff; /* Fond blanc si l'image est dézoomée */
+        }
+
+        /* Menu Figé avec Logo à gauche et liens centrés */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centre le contenu principal */
+            padding: 0 40px;
+            position: relative;
+        }
+
+        /* Logo indépendant à gauche */
+        .logo-box {
+            position: absolute;
+            left: 40px;
+        }
+
+        .logo-box img {
+            height: 60px; /* Taille fidèle à l'image */
+            display: block;
+        }
+
+        /* Menu Centré */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+
+        .nav-item { position: relative; }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--main-color);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 5px 0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover { color: var(--accent-color); }
+
+        /* Ligne fine dégradée sous le menu complet */
+        .nav-separator {
+            height: 1px;
+            width: 100%;
+            margin-top: 15px;
+            background: linear-gradient(to right, transparent, rgba(44, 76, 100, 0.1), transparent);
+        }
+
+        /* Sous-menu au clic */
+        #mission-toggle { display: none; }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: 200px;
+            border: 1px solid #eee;
+            padding: 10px 0;
+            list-style: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        #mission-toggle:checked ~ .dropdown-menu { display: block; }
+
+        /* 2. COLONNE CENTRALE POUR LE TEXTE (50% de largeur) */
+        .main-column {
+            width: 50%; /* Largeur de la colonne de texte comme sur la photo */
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 0;
+        }
+
+        /* Style des panneaux de texte (Glass Panel fidèle à la photo) */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            text-align: center;
+            width: 100%; /* Prend toute la largeur de la colonne de 50% */
+            box-sizing: border-box;
+        }
+
+        h2 { 
+            color: var(--main-color); 
+            font-size: 2.2em; 
+            margin-bottom: 25px; 
+            font-weight: bold;
+        }
+        
+        p { 
+            line-height: 1.8; 
+            font-size: 1.05em; 
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar-container">
+            <!-- Logo à gauche, indépendant du flux centré -->
+            <div class="logo-box">
+                <img src="images/logo.png" alt="Logo Association du Counseling Biblique">
+            </div>
+
+            <!-- Liens de navigation centrés au milieu de la page -->
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#presentation" class="nav-link">Présentation</a></li>
+                    
+                    <li class="nav-item">
+                        <input type="checkbox" id="mission-toggle">
+                        <label for="mission-toggle" class="nav-link">Mission ▾</label>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="#formations">Formations</a></li>
+                            <li class="dropdown-item"><a href="#soutien">Soutien aux églises</a></li>
+                            <li class="dropdown-item"><a href="#accompagnement">Accompagnement</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#soutenir" class="nav-link">Nous soutenir</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="nav-separator"></div>
+    </header>
+
+    <!-- TOUT LE CONTENU EST DANS CETTE COLONNE DE 50% -->
+    <div class="main-column">
+        
+        <section id="presentation">
+            <div class="glass-panel">
+                <h2>Présentation</h2>
+                <p>Ici, vous pouvez présenter le projet ou la personne. Le fond derrière ne bouge pas pendant que vous lisez ce texte.</p>
+            </div>
+        </section>
+
+        <section id="formations">
+            <div class="glass-panel">
+                <h2>Nos Formations</h2>
+                <p>Découvrez nos programmes de formation approfondis.</p>
+            </div>
+        </section>
+
+        <section id="soutien">
+            <div class="glass-panel">
+                <h2>Soutien aux Églises</h2>
+                <p>Nous accompagnons les communautés dans leur croissance spirituelle.</p>
+            </div>
+        </section>
+
+        <section id="accompagnement">
+            <div class="glass-panel">
+                <h2>Accompagnement</h2>
+                <p>Un suivi personnalisé basé sur les principes bibliques.</p>
+            </div>
+        </section>
+
+        <section id="soutenir">
+            <div class="glass-panel">
+                <h2>Nous Soutenir</h2>
+                <p>Participez à la mission de l'ACB par vos dons et votre engagement.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="glass-panel">
+                <h2>Contact</h2>
+                <p>N'hésitez pas à nous contacter pour toute question.</p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
