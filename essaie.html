@@ -20,19 +20,18 @@
             --bg-glass: rgba(255, 255, 255, 0.95);
         }
 
-        html, body {
-            margin: 0;
-            padding: 0;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
+            margin: 0;
+            padding: 0;
             font-family: var(--font-family);
-            color: #333;
             background-image: url('images/fond.png');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
         }
 
         /* 2. HEADER ET NAVIGATION */
@@ -41,7 +40,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.98);
+            background-color: white;
             z-index: 1000;
             padding: 25px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -51,7 +50,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 90px;
+            padding: 0 60px;
             position: relative;
         }
 
@@ -61,7 +60,7 @@
         }
 
         .logo-box img {
-            height: 50px;
+            height: 85px;
             display: block;
         }
 
@@ -73,14 +72,53 @@
             gap: 40px;
         }
 
+        .nav-item { position: relative; }
+
         .nav-link {
             text-decoration: none;
             color: var(--main-color);
             font-size: 16px;
             font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
         }
 
-        /* 3. STRUCTURE */
+        .nav-link:hover { color: var(--accent-color); }
+
+        /* GESTION DU SOUS-MENU */
+        #mission-toggle { display: none; }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -15px;
+            background-color: var(--bg-glass);
+            list-style: none;
+            margin: 20px 0 0 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 220px;
+        }
+
+        .dropdown-item { margin-bottom: 12px; }
+        .dropdown-item:last-child { margin-bottom: 0; }
+        .dropdown-item a {
+            text-decoration: none;
+            color: var(--main-color);
+            font-size: 14px;
+            display: block;
+            transition: color 0.3s, transform 0.2s;
+        }
+        .dropdown-item a:hover { 
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        #mission-toggle:checked ~ .dropdown-menu { display: block; }
+
+        /* 3. STRUCTURE DES SECTIONS */
         .main-column {
             width: 50%;
             margin: 0 auto;
@@ -88,7 +126,7 @@
         }
 
         section {
-            min-height: 60vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -101,70 +139,57 @@
             text-align: center;
             width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 4px;
         }
 
-        /* 4. SECTION CONTACT (IMAGE COMPLÈTE ET TRANSPARENTE) */
+        h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
+        p { line-height: 1.8; font-size: 1.05em; color: #555; }
+
+        /* 4. SECTION CONTACT (LARGEUR TOTALE & SANS LIGNES) */
         footer#contact {
-            position: relative;
             width: 100%;
+            background-color: #f2f2f2; /* Gris clair pour masquer fond.png */
             background-image: url('images/contact.png'); 
-            /* contain force l'image à s'afficher en entier sans être coupée */
-            background-size: contain; 
+            background-size: 100% auto; 
             background-position: center bottom;
             background-repeat: no-repeat;
-            /* On ajuste le padding pour que le texte se place sur l'image */
-            padding: 200px 0 100px 0; 
-            color: #ffffff;
-            margin-top: 50px;
-            /* La hauteur minimum dépend de la largeur pour garder le ratio de l'image */
-            min-height: 600px; 
-        }
-
-        /* On garde un voile très léger uniquement sur l'image pour la lisibilité du texte */
-        footer#contact::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.2); 
-            z-index: 1;
+            padding: 120px 0 60px 0;
+            margin-top: 80px;
+            min-height: 45vw;
+            position: relative;
         }
 
         .contact-container {
-            position: relative;
-            z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
             padding: 0 40px;
-            /* On descend le texte vers le bas de l'image si besoin */
-            margin-top: 150px; 
+            position: relative;
+            z-index: 5;
         }
 
         .contact-column { flex: 1; }
         .contact-column h3 {
-            color: #ffffff;
-            font-size: 28px;
+            color: #333;
+            font-size: 26px;
             margin-bottom: 25px;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Ombre pour lire sur l'image */
         }
 
         .contact-column p {
-            font-size: 16px;
-            color: #ffffff;
+            font-size: 15px;
+            color: #444;
             margin: 10px 0;
             display: flex;
             align-items: center;
             gap: 12px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         .address-detail {
             display: block;
-            margin-left: 30px;
-            font-size: 15px;
-            color: #eee;
+            margin-left: 27px;
+            font-size: 14px;
+            color: #666;
         }
 
     </style>
@@ -176,10 +201,21 @@
             <div class="logo-box">
                 <img src="images/logo.png" alt="Logo ACB">
             </div>
+
             <nav>
                 <ul class="nav-links">
                     <li><a href="#presentation" class="nav-link">Présentation</a></li>
-                    <li><a href="#formations" class="nav-link">Mission</a></li>
+                    
+                    <li class="nav-item">
+                        <input type="checkbox" id="mission-toggle">
+                        <label for="mission-toggle" class="nav-link">Mission ▾</label>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="#formations">Formations</a></li>
+                            <li class="dropdown-item"><a href="#soutien">Soutien aux églises</a></li>
+                            <li class="dropdown-item"><a href="#accompagnement">Accompagnement</a></li>
+                        </ul>
+                    </li>
+
                     <li><a href="#soutenir" class="nav-link">Nous soutenir</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -188,19 +224,42 @@
     </header>
 
     <div class="main-column">
+        
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
-                <p>Votre texte ici...</p>
+                <p>L'Association du Counseling Biblique (ACB) a pour but de promouvoir le soin des âmes basé sur l'autorité et la suffisance des Écritures.</p>
             </div>
         </section>
-        
+
+        <section id="formations">
+            <div class="glass-panel">
+                <h2>Nos Formations</h2>
+                <p>Nous proposons des programmes de formation théoriques et pratiques pour équiper les chrétiens dans l'aide et l'accompagnement d'autrui.</p>
+            </div>
+        </section>
+
+        <section id="soutien">
+            <div class="glass-panel">
+                <h2>Soutien aux Églises</h2>
+                <p>Nous collaborons avec les églises locales pour les aider à développer une culture de soin mutuel et de discipulat biblique.</p>
+            </div>
+        </section>
+
+        <section id="accompagnement">
+            <div class="glass-panel">
+                <h2>Accompagnement</h2>
+                <p>Le centre propose un accompagnement personnel basé sur la sagesse biblique pour faire face aux défis de la vie.</p>
+            </div>
+        </section>
+
         <section id="soutenir">
             <div class="glass-panel">
-                <h2>Soutenir l'ACB</h2>
-                <p>Votre engagement permet à l'association de continuer sa mission.</p>
+                <h2>Nous Soutenir</h2>
+                <p>Votre engagement et vos dons permettent à l'association de continuer sa mission de formation et d'aide spirituelle.</p>
             </div>
         </section>
+
     </div>
 
     <footer id="contact">
