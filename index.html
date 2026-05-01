@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACB - Association du Counseling Biblique</title>
     <style>
+        /* 1. POLICE ET VARIABLES */
         @font-face {
             font-family: 'Metropolis';
             src: url('fonts/Metropolis-Regular.woff2') format('woff2');
@@ -16,6 +17,7 @@
             --main-color: #2c4c64;
             --font-family: 'Metropolis', sans-serif;
             --accent-color: #ed6d5f;
+            --bg-glass: rgba(255, 255, 255, 0.95);
         }
 
         html {
@@ -27,14 +29,14 @@
             padding: 0;
             font-family: var(--font-family);
             color: #333;
-            /* 1. IMAGE DE FOND QUI REMPLIT TOUTE LA PAGE */
             background-image: url('images/fond.png');
             background-attachment: fixed;
-            background-size: cover; /* Remplit tout l'espace */
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
+        /* 2. HEADER ET NAVIGATION */
         header {
             position: fixed;
             top: 0;
@@ -84,38 +86,38 @@
 
         .nav-link:hover { color: var(--accent-color); }
 
-        /* 2. SOUS-MENU ÉPURÉ (Même style que le menu principal) */
+        /* SOUS-MENU MISSION */
         #mission-toggle { display: none; }
         
         .dropdown-menu {
             display: none;
             position: absolute;
             top: 100%;
-            left: 0;
-            background: transparent; /* Suppression du bloc blanc */
+            left: -15px;
+            background-color: var(--bg-glass);
             list-style: none;
-            margin: 10px 0 0 0;
-            padding: 0;
-            text-align: left;
+            margin: 15px 0 0 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 180px;
         }
 
-        .dropdown-item {
-            margin-bottom: 8px;
-        }
-
+        .dropdown-item { margin-bottom: 10px; }
+        .dropdown-item:last-child { margin-bottom: 0; }
         .dropdown-item a {
             text-decoration: none;
             color: var(--main-color);
             font-size: 13px;
-            white-space: nowrap;
-            transition: color 0.3s;
-        }
-
-        .dropdown-item a:hover { color: var(--accent-color); }
-
-        #mission-toggle:checked ~ .dropdown-menu {
             display: block;
+            transition: color 0.3s, transform 0.2s;
         }
+        .dropdown-item a:hover { 
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        #mission-toggle:checked ~ .dropdown-menu { display: block; }
 
         .nav-separator {
             height: 1px;
@@ -124,11 +126,10 @@
             background: linear-gradient(to right, transparent, rgba(44, 76, 100, 0.1), transparent);
         }
 
-        /* 3. COLONNE CENTRALE SUR TOUTE LA LONGUEUR */
+        /* 3. STRUCTURE DES SECTIONS */
         .main-column {
             width: 50%;
             margin: 0 auto;
-            min-height: 100vh;
         }
 
         section {
@@ -136,18 +137,54 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 100px 0;
         }
 
         .glass-panel {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--bg-glass);
             padding: 60px 40px;
             text-align: center;
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Légère ombre pour décoller du fond */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
         p { line-height: 1.8; font-size: 1.05em; color: #555; }
+
+        /* 4. SECTION CONTACT (BANDE BLANCHE BAS DE PAGE) */
+        #contact {
+            min-height: auto;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 60px 0;
+            display: block;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+        }
+
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: 0 40px;
+        }
+
+        .contact-info h3 {
+            color: var(--main-color);
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-info p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            margin: 5px 0;
+            text-align: left;
+        }
 
     </style>
 </head>
@@ -181,7 +218,9 @@
         <div class="nav-separator"></div>
     </header>
 
+    <!-- COLONNE CENTRALE POUR LE CONTENU -->
     <div class="main-column">
+        
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
@@ -192,38 +231,57 @@
         <section id="formations">
             <div class="glass-panel">
                 <h2>Nos Formations</h2>
-                <p>Découvrez nos programmes de formation approfondis.</p>
+                <p>Découvrez nos programmes de formation approfondis en counseling biblique.</p>
             </div>
         </section>
 
         <section id="soutien">
             <div class="glass-panel">
                 <h2>Soutien aux Églises</h2>
-                <p>Nous accompagnons les communautés dans leur croissance spirituelle.</p>
+                <p>Nous accompagnons les communautés locales dans leur croissance et leur soin mutuel.</p>
             </div>
         </section>
 
         <section id="accompagnement">
             <div class="glass-panel">
                 <h2>Accompagnement</h2>
-                <p>Un suivi personnalisé basé sur les principes bibliques.</p>
+                <p>Un suivi personnalisé basé sur les principes et l'espérance biblique.</p>
             </div>
         </section>
 
         <section id="soutenir">
             <div class="glass-panel">
                 <h2>Nous Soutenir</h2>
-                <p>Participez à la mission de l'ACB par vos dons et votre engagement.</p>
+                <p>Votre engagement permet à l'association de continuer sa mission auprès du plus grand nombre.</p>
             </div>
         </section>
 
-        <section id="contact">
-            <div class="glass-panel">
-                <h2>Contact</h2>
-                <p>N'hésitez pas à nous contacter pour toute question.</p>
+    </div> <!-- FIN DE LA COLONNE CENTRALE -->
+
+    <!-- SECTION CONTACT (FOOTER) -->
+    <footer id="contact">
+        <div class="contact-container">
+            
+            <div class="contact-info">
+                <h3>Contact</h3>
+                <p><strong>Email :</strong> contact@acb-counseling.fr</p>
+                <p><strong>Téléphone :</strong> +33 (0)1 00 00 00 00</p>
             </div>
-        </section>
-    </div>
+
+            <div class="contact-info">
+                <h3>Localisation</h3>
+                <p>Paris, France</p>
+                <p>Intervention dans toute la francophonie</p>
+            </div>
+
+            <div class="contact-info">
+                <h3>Association ACB</h3>
+                <p>© 2026 Association du Counseling Biblique</p>
+                <p>Tous droits réservés.</p>
+            </div>
+
+        </div>
+    </footer>
 
 </body>
 </html>
