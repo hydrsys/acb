@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACB - Association du Counseling Biblique</title>
     <style>
-        /* Définition de la police Metropolis */
         @font-face {
             font-family: 'Metropolis';
             src: url('fonts/Metropolis-Regular.woff2') format('woff2');
@@ -28,16 +27,14 @@
             padding: 0;
             font-family: var(--font-family);
             color: #333;
-            /* 1. IMAGE DE FOND CENTRÉE ET DÉZOOMÉE */
+            /* 1. IMAGE DE FOND QUI REMPLIT TOUTE LA PAGE */
             background-image: url('images/fond.png');
             background-attachment: fixed;
-            background-size: 80%; /* Dézoome l'image */
+            background-size: cover; /* Remplit tout l'espace */
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #fff; /* Fond blanc si l'image est dézoomée */
         }
 
-        /* Menu Figé avec Logo à gauche et liens centrés */
         header {
             position: fixed;
             top: 0;
@@ -46,29 +43,26 @@
             background-color: rgba(255, 255, 255, 0.98);
             z-index: 1000;
             padding: 15px 0;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
         }
 
         .navbar-container {
             display: flex;
             align-items: center;
-            justify-content: center; /* Centre le contenu principal */
+            justify-content: center;
             padding: 0 40px;
             position: relative;
         }
 
-        /* Logo indépendant à gauche */
         .logo-box {
             position: absolute;
             left: 40px;
         }
 
         .logo-box img {
-            height: 60px; /* Taille fidèle à l'image */
+            height: 60px;
             display: block;
         }
 
-        /* Menu Centré */
         .nav-links {
             display: flex;
             list-style: none;
@@ -84,14 +78,45 @@
             color: var(--main-color);
             font-size: 14px;
             font-weight: 500;
-            padding: 5px 0;
             cursor: pointer;
             transition: color 0.3s;
         }
 
         .nav-link:hover { color: var(--accent-color); }
 
-        /* Ligne fine dégradée sous le menu complet */
+        /* 2. SOUS-MENU ÉPURÉ (Même style que le menu principal) */
+        #mission-toggle { display: none; }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: transparent; /* Suppression du bloc blanc */
+            list-style: none;
+            margin: 10px 0 0 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        .dropdown-item {
+            margin-bottom: 8px;
+        }
+
+        .dropdown-item a {
+            text-decoration: none;
+            color: var(--main-color);
+            font-size: 13px;
+            white-space: nowrap;
+            transition: color 0.3s;
+        }
+
+        .dropdown-item a:hover { color: var(--accent-color); }
+
+        #mission-toggle:checked ~ .dropdown-menu {
+            display: block;
+        }
+
         .nav-separator {
             height: 1px;
             width: 100%;
@@ -99,61 +124,30 @@
             background: linear-gradient(to right, transparent, rgba(44, 76, 100, 0.1), transparent);
         }
 
-        /* Sous-menu au clic */
-        #mission-toggle { display: none; }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            min-width: 200px;
-            border: 1px solid #eee;
-            padding: 10px 0;
-            list-style: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        #mission-toggle:checked ~ .dropdown-menu { display: block; }
-
-        /* 2. COLONNE CENTRALE POUR LE TEXTE (50% de largeur) */
+        /* 3. COLONNE CENTRALE SUR TOUTE LA LONGUEUR */
         .main-column {
-            width: 50%; /* Largeur de la colonne de texte comme sur la photo */
+            width: 50%;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            min-height: 100vh;
         }
 
         section {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 100px 0;
         }
 
-        /* Style des panneaux de texte (Glass Panel fidèle à la photo) */
         .glass-panel {
             background: rgba(255, 255, 255, 0.95);
             padding: 60px 40px;
             text-align: center;
-            width: 100%; /* Prend toute la largeur de la colonne de 50% */
-            box-sizing: border-box;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Légère ombre pour décoller du fond */
         }
 
-        h2 { 
-            color: var(--main-color); 
-            font-size: 2.2em; 
-            margin-bottom: 25px; 
-            font-weight: bold;
-        }
-        
-        p { 
-            line-height: 1.8; 
-            font-size: 1.05em; 
-            color: #555;
-        }
+        h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
+        p { line-height: 1.8; font-size: 1.05em; color: #555; }
 
     </style>
 </head>
@@ -161,12 +155,10 @@
 
     <header>
         <div class="navbar-container">
-            <!-- Logo à gauche, indépendant du flux centré -->
             <div class="logo-box">
-                <img src="images/logo.png" alt="Logo Association du Counseling Biblique">
+                <img src="images/logo.png" alt="Logo ACB">
             </div>
 
-            <!-- Liens de navigation centrés au milieu de la page -->
             <nav>
                 <ul class="nav-links">
                     <li><a href="#presentation" class="nav-link">Présentation</a></li>
@@ -189,9 +181,7 @@
         <div class="nav-separator"></div>
     </header>
 
-    <!-- TOUT LE CONTENU EST DANS CETTE COLONNE DE 50% -->
     <div class="main-column">
-        
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
@@ -233,7 +223,6 @@
                 <p>N'hésitez pas à nous contacter pour toute question.</p>
             </div>
         </section>
-
     </div>
 
 </body>
