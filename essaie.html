@@ -23,20 +23,16 @@
         html, body {
             margin: 0;
             padding: 0;
-            height: 100%;
         }
 
         body {
             font-family: var(--font-family);
             color: #333;
-            /* Le fond ne s'applique qu'au body, mais on va le stopper avec le footer */
             background-image: url('images/fond.png');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            display: flex;
-            flex-direction: column;
         }
 
         /* 2. HEADER ET NAVIGATION */
@@ -65,9 +61,8 @@
         }
 
         .logo-box img {
-            height: 60px;
+            height: 50px;
             display: block;
-            width: auto;
         }
 
         .nav-links {
@@ -83,21 +78,17 @@
             color: var(--main-color);
             font-size: 16px;
             font-weight: 500;
-            transition: color 0.3s;
         }
 
-        .nav-link:hover { color: var(--accent-color); }
-
-        /* 3. STRUCTURE DES SECTIONS */
+        /* 3. STRUCTURE */
         .main-column {
             width: 50%;
             margin: 0 auto;
             padding-top: 140px;
-            flex: 1; /* Pousse le footer vers le bas */
         }
 
         section {
-            min-height: 80vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -112,31 +103,29 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
-        p { line-height: 1.8; font-size: 1.05em; color: #555; }
-
-        /* 4. SECTION CONTACT (IMAGE PROPRE ET REHAUSSÉE) */
+        /* 4. SECTION CONTACT (IMAGE COMPLÈTE ET TRANSPARENTE) */
         footer#contact {
             position: relative;
             width: 100%;
-            /* background-color solide pour "couper" le fond du body */
-            background-color: #000; 
             background-image: url('images/contact.png'); 
-            background-size: cover;
-            /* center 20% permet de remonter l'image de l'arbre dans le cadre */
-            background-position: center 25%; 
+            /* contain force l'image à s'afficher en entier sans être coupée */
+            background-size: contain; 
+            background-position: center bottom;
             background-repeat: no-repeat;
-            padding: 120px 0 80px 0;
+            /* On ajuste le padding pour que le texte se place sur l'image */
+            padding: 200px 0 100px 0; 
             color: #ffffff;
-            z-index: 10; /* Assure de passer au dessus du fond du body */
+            margin-top: 50px;
+            /* La hauteur minimum dépend de la largeur pour garder le ratio de l'image */
+            min-height: 600px; 
         }
 
-        /* Voile sombre plus opaque pour bien séparer du reste du site */
+        /* On garde un voile très léger uniquement sur l'image pour la lisibilité du texte */
         footer#contact::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.65); 
+            background-color: rgba(0, 0, 0, 0.2); 
             z-index: 1;
         }
 
@@ -149,30 +138,33 @@
             justify-content: space-between;
             align-items: flex-start;
             padding: 0 40px;
+            /* On descend le texte vers le bas de l'image si besoin */
+            margin-top: 150px; 
         }
 
         .contact-column { flex: 1; }
         .contact-column h3 {
             color: #ffffff;
             font-size: 28px;
-            margin-bottom: 30px;
-            font-weight: 500;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Ombre pour lire sur l'image */
         }
 
         .contact-column p {
             font-size: 16px;
-            line-height: 1.6;
-            margin: 12px 0;
+            color: #ffffff;
+            margin: 10px 0;
             display: flex;
             align-items: center;
             gap: 12px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         .address-detail {
             display: block;
             margin-left: 30px;
             font-size: 15px;
-            color: #ccc;
+            color: #eee;
         }
 
     </style>
@@ -196,44 +188,19 @@
     </header>
 
     <div class="main-column">
-        
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
-                <p>Ici, vous pouvez présenter le projet ou la personne. Le fond derrière ne bouge pas pendant que vous lisez ce texte.</p>
+                <p>Votre texte ici...</p>
             </div>
         </section>
-
-        <section id="formations">
-            <div class="glass-panel">
-                <h2>Nos Formations</h2>
-                <p>Découvrez nos programmes de formation approfondis en counseling biblique.</p>
-            </div>
-        </section>
-
-        <section id="soutien">
-            <div class="glass-panel">
-                <h2>Soutien aux Églises</h2>
-                <p>Nous accompagnons les communautés locales dans leur croissance et leur soin mutuel.</p>
-            </div>
-        </section>
-
-        <section id="accompagnement">
-            <div class="glass-panel">
-                <h2>Accompagnement</h2>
-                <p>Un suivi personnalisé basé sur les principes et l'espérance biblique.</p>
-            </div>
-        </section>
-
+        
         <section id="soutenir">
             <div class="glass-panel">
-                <h2>Nous Soutenir</h2>
-                <p>Votre engagement permet à l'association de continuer sa mission auprès du plus grand nombre.</p>
+                <h2>Soutenir l'ACB</h2>
+                <p>Votre engagement permet à l'association de continuer sa mission.</p>
             </div>
         </section>
-
-    </div>
-
     </div>
 
     <footer id="contact">
