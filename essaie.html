@@ -36,7 +36,7 @@
             background-repeat: no-repeat;
         }
 
-        /* 2. HEADER ET NAVIGATION (AGRANDIS) */
+        /* 2. HEADER ET NAVIGATION */
         header {
             position: fixed;
             top: 0;
@@ -44,7 +44,7 @@
             width: 100%;
             background-color: rgba(255, 255, 255, 0.98);
             z-index: 1000;
-            padding: 25px 0; /* Augmenté de 15px à 25px */
+            padding: 25px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
@@ -62,7 +62,7 @@
         }
 
         .logo-box img {
-            height: 60px; /* Augmenté de 60px à 85px */
+            height: 65px;
             display: block;
             width: auto;
         }
@@ -72,7 +72,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 40px; /* Plus d'espace entre les liens */
+            gap: 40px;
         }
 
         .nav-item { position: relative; }
@@ -80,7 +80,7 @@
         .nav-link {
             text-decoration: none;
             color: var(--main-color);
-            font-size: 16px; /* Texte légèrement plus grand */
+            font-size: 16px;
             font-weight: 500;
             cursor: pointer;
             transition: color 0.3s;
@@ -124,7 +124,7 @@
         .main-column {
             width: 50%;
             margin: 0 auto;
-            padding-top: 140px; /* Espace pour le header plus large */
+            padding-top: 140px;
         }
 
         section {
@@ -146,25 +146,25 @@
         h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
         p { line-height: 1.8; font-size: 1.05em; color: #555; }
 
-        /* 4. SECTION CONTACT (IMAGE DE FOND CORRIGÉE) */
+        /* 4. SECTION CONTACT (OPTIMISÉE POUR LE BAS DE L'IMAGE) */
         footer#contact {
             position: relative;
             width: 100%;
-            /* Correction de l'extension ici : contact.png -> contact.jpg ou inversement selon ton dossier */
             background-image: url('images/contact.png'); 
             background-size: cover;
-            background-position: center;
-            background-attachment: scroll;
-            padding: 120px 0;
+            background-position: bottom center; /* L'image se cale sur le bas */
+            background-repeat: no-repeat;
+            padding: 150px 0 80px 0; /* Plus d'espace en haut pour voir l'arbre */
             color: #ffffff;
             margin-top: 50px;
+            min-height: 400px; /* Assure une hauteur minimum si peu de texte */
         }
 
         footer#contact::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.55); 
+            background-color: rgba(0, 0, 0, 0.45); /* Un peu plus clair pour voir l'image */
             z-index: 1;
         }
 
