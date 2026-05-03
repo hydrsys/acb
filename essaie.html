@@ -32,7 +32,7 @@
             font-family: var(--font-family);
             color: #333;
             background-image: url('images/fond.png');
-            background-attachment: fixed; /* Fixé sur PC */
+            background-attachment: fixed;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -46,7 +46,7 @@
             width: 100%;
             background-color: white;
             z-index: 1000;
-            padding: 20px 0;
+            padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
@@ -56,17 +56,17 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
+            padding: 0 20px;
         }
 
-        .logo-box img { height: 50px; display: block; }
+        .logo-box img { height: 45px; display: block; }
 
         .menu-toggle {
             display: none;
             flex-direction: column;
             justify-content: space-between;
-            width: 30px;
-            height: 21px;
+            width: 28px;
+            height: 20px;
             background: transparent;
             border: none;
             cursor: pointer;
@@ -85,7 +85,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 30px;
+            gap: 25px;
         }
 
         .nav-item { position: relative; }
@@ -95,11 +95,13 @@
             color: var(--main-color);
             font-size: 15px;
             font-weight: 500;
-            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .nav-link:hover { color: var(--accent-color); }
-
+        /* SOUS-MENU (Desktop) */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -107,11 +109,11 @@
             left: 0;
             background-color: white;
             list-style: none;
-            margin: 15px 0 0 0;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 220px;
+            min-width: 200px;
+            margin-top: 10px;
         }
 
         .dropdown-item a {
@@ -122,50 +124,65 @@
             padding: 8px 0;
         }
 
-        .nav-item:hover .dropdown-menu { display: block; }
-
         /* 3. STRUCTURE */
         .main-column {
             width: 90%;
             max-width: 800px;
             margin: 0 auto;
-            padding-top: 140px; 
+            padding-top: 120px; 
         }
-
-        section { min-height: 80vh; display: flex; align-items: center; padding: 60px 0; }
 
         .glass-panel {
             background: var(--bg-glass);
-            padding: 60px 40px;
+            padding: 40px 25px;
             text-align: center;
-            width: 100%;
             border-radius: 12px;
+            margin-bottom: 40px;
         }
 
-        h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
+        h2 { color: var(--main-color); font-size: 2em; margin-bottom: 20px; }
 
-        /* 4. FOOTER */
-        footer#contact { background-color: white; padding: 80px 0; margin-top: 80px; }
+        /* 4. FOOTER (CONTACT) - REFAIT POUR MOBILE */
+        footer#contact {
+            background-color: white;
+            padding: 60px 20px;
+            margin-top: 60px;
+            border-top: 1px solid #eee;
+        }
+
         .contact-container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
         }
-        .contact-column { flex: 1; }
-        .address-stack { display: flex; flex-direction: column; }
+
+        .contact-column h3 {
+            color: var(--main-color);
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-column p, .contact-column a {
+            font-size: 14px;
+            color: #555;
+            text-decoration: none;
+            margin: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+        }
 
         /* =============================================
-           5. ADAPTATION TÉLÉPHONE (CORRECTIONS)
+           5. MOBILE (CORECTIONS)
         ============================================= */
         @media (max-width: 768px) {
             
-            /* FIX FOND ZOOMÉ : On désactive le background-attachment fixed sur mobile */
-            body {
-                background-attachment: scroll; 
-                background-size: cover;
-            }
+            body { background-attachment: scroll; } /* Fix fond zoomé */
 
             .menu-toggle { display: flex; }
 
@@ -174,31 +191,49 @@
                 top: 0;
                 right: -100%;
                 height: 100vh;
-                width: 75%;
+                width: 80%;
                 background-color: white;
                 flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: 0.4s ease-in-out;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                padding: 100px 30px;
+                transition: 0.4s ease;
+                box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+                overflow-y: auto;
             }
 
             .nav-links.active { right: 0; }
 
+            /* SOUS-MENU MOBILE (ACCORDÉON) */
             .dropdown-menu {
                 position: static;
-                display: block;
+                display: none; /* Caché par défaut */
                 box-shadow: none;
-                padding: 10px 0;
+                padding: 0 0 0 20px;
+                margin: 0;
+            }
+            
+            .dropdown-menu.open { display: block; } /* Classe pour ouvrir via JS */
+
+            .nav-item { width: 100%; text-align: left; }
+            .nav-link { font-size: 18px; padding: 15px 0; border-bottom: 1px solid #f0f0f0; width: 100%; justify-content: space-between; }
+
+            /* SECTION CONTACT MOBILE */
+            .contact-container {
+                grid-template-columns: 1fr; /* Une seule colonne */
                 text-align: center;
+                gap: 40px;
             }
 
-            .contact-container { flex-direction: column; text-align: center; gap: 40px; }
+            .contact-column p, .contact-column a { justify-content: center; }
 
-            /* Animation croix */
-            .menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            /* Animation Hamburger */
+            .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        }
+
+        /* Hover PC seulement */
+        @media (min-width: 769px) {
+            .nav-item:hover .dropdown-menu { display: block; }
         }
 
     </style>
@@ -222,12 +257,12 @@
                     <li><a href="#presentation" class="nav-link">Présentation</a></li>
                     
                     <li class="nav-item">
-                        <span class="nav-link">Mission ▾</span>
-                        <ul class="dropdown-menu">
-                            <!-- Ajout de la classe close-on-click ici -->
-                            <li class="dropdown-item"><a href="#formations" class="sub-link">Formations</a></li>
-                            <li class="dropdown-item"><a href="#soutien" class="sub-link">Soutien aux églises</a></li>
-                            <li class="dropdown-item"><a href="#accompagnement" class="sub-link">Accompagnement</a></li>
+                        <!-- Ajout d'un ID pour le clic mobile -->
+                        <div class="nav-link" id="mission-btn">Mission <span style="font-size: 10px;">▼</span></div>
+                        <ul class="dropdown-menu" id="mission-dropdown">
+                            <li class="dropdown-item"><a href="#formations" class="close-menu">Formations</a></li>
+                            <li class="dropdown-item"><a href="#soutien" class="close-menu">Soutien aux églises</a></li>
+                            <li class="dropdown-item"><a href="#accompagnement" class="close-menu">Accompagnement</a></li>
                         </ul>
                     </li>
 
@@ -246,58 +281,25 @@
                 <p>L'Association du Counseling Biblique (ACB) œuvre pour la promotion du soin de l'âme à travers les Écritures.</p>
             </div>
         </section>
-
-        <section id="formations">
-            <div class="glass-panel">
-                <h2>Nos Formations</h2>
-                <p>Équipez-vous pour l'accompagnement biblique.</p>
-            </div>
-        </section>
-
-        <section id="soutien">
-            <div class="glass-panel">
-                <h2>Soutien aux églises</h2>
-                <p>Aide aux églises locales.</p>
-            </div>
-        </section>
-
-        <section id="accompagnement">
-            <div class="glass-panel">
-                <h2>Accompagnement</h2>
-                <p>Un soutien biblique pour les épreuves.</p>
-            </div>
-        </section>
-
-        <section id="soutenir">
-            <div class="glass-panel">
-                <h2>Nous soutenir</h2>
-                <p>Participez à la mission.</p>
-            </div>
-        </section>
-
-        <section id="newsletter">
-            <div class="glass-panel">
-                <h2>Restez informé</h2>
-                <div class="newsletter-box">
-                    <p>Inscrivez-vous à notre newsletter.</p>
-                    <a href="#" class="btn-newsletter">M'inscrire</a>
-                </div>
-            </div>
-        </section>
+        <!-- Les autres sections ici... -->
     </div>
 
     <footer id="contact">
         <div class="contact-container">
             <div class="contact-column">
                 <h3>Contact</h3>
-                <p>✉ info@counselingbiblique.org</p>
+                <a href="mailto:info@counselingbiblique.org">✉ info@counselingbiblique.org</a>
+                <a href="tel:+41764834056">📱 +41 76 483 40 56</a>
             </div>
+
             <div class="contact-column">
-                <h3>Centre</h3>
-                <div class="address-stack">
-                    <strong>Eglise Action Biblique</strong>
-                    <span>Rue de la Servette 21, Genève</span>
-                </div>
+                <h3>Centre de counseling</h3>
+                <p>📍 <strong>Eglise Action Biblique</strong><br>Rue de la Servette 21<br>1201 Genève</p>
+            </div>
+
+            <div class="contact-column">
+                <h3>Siège social</h3>
+                <p>🏠 Route de la Capite 120<br>1253 Vandoeuvres<br>Suisse</p>
             </div>
         </div>
     </footer>
@@ -305,21 +307,29 @@
     <script>
         const btnHamburger = document.getElementById('btn-hamburger');
         const navMenu = document.getElementById('nav-menu');
-        
-        // Sélectionne TOUS les liens (principaux et sous-menus)
-        const allLinks = document.querySelectorAll('.nav-link, .sub-link');
+        const missionBtn = document.getElementById('mission-btn');
+        const missionDropdown = document.getElementById('mission-dropdown');
 
-        // Bascule le menu
+        // 1. Ouvrir le menu latéral
         btnHamburger.addEventListener('click', () => {
             btnHamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
 
-        // Ferme le menu dès qu'un lien est cliqué
-        allLinks.forEach(link => {
+        // 2. Gérer le sous-menu Mission (clic sur mobile)
+        missionBtn.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.stopPropagation();
+                missionDropdown.classList.toggle('open');
+            }
+        });
+
+        // 3. Fermer tout quand on clique sur un lien final
+        document.querySelectorAll('.close-menu, .nav-link:not(#mission-btn)').forEach(link => {
             link.addEventListener('click', () => {
                 btnHamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                missionDropdown.classList.remove('open');
             });
         });
     </script>
