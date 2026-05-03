@@ -52,7 +52,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 90px;
+            padding: 0 60px;
             position: relative;
         }
 
@@ -119,11 +119,11 @@
 
         #mission-toggle:checked ~ .dropdown-menu { display: block; }
 
-        /* 3. STRUCTURE DES SECTIONS */
+        /* 3. STRUCTURE DES SECTIONS (CENTRÉES) */
         .main-column {
             width: 50%;
             margin: 0 auto;
-            padding-top: 160px; /* Espace pour le header */
+            padding-top: 160px; 
         }
 
         section {
@@ -146,48 +146,69 @@
         h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
         p { line-height: 1.8; font-size: 1.05em; color: #555; }
 
-        /* 4. FOOTER BANDE BLANCHE SIMPLE */
+        /* 4. FOOTER BANDE BLANCHE OPTIMISÉ */
         footer#contact {
             width: 100%;
-            background-color: white; /* Bande blanche opaque */
+            background-color: white;
             padding: 80px 0;
             margin-top: 100px;
             box-shadow: 0 -5px 15px rgba(0,0,0,0.03);
         }
 
         .contact-container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            justify-content: center;
+            gap: 60px;
             padding: 0 40px;
         }
 
-        .contact-column { flex: 1; }
+        .contact-column {
+            flex: 1;
+            min-width: 250px;
+        }
 
         .contact-column h3 {
             color: var(--main-color);
-            font-size: 22px;
+            font-size: 20px;
             margin-bottom: 25px;
             font-weight: 600;
-        }
-
-        .contact-column p {
-            font-size: 15px;
-            color: #444;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
             text-align: left;
         }
 
-        .address-detail {
-            display: block;
-            margin-left: 27px;
+        /* Style général des textes et liens du footer */
+        .contact-column a, .contact-column p {
             font-size: 14px;
-            color: #777;
+            color: #555;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: color 0.3s;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .contact-column a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-info-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .icon {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .address-block {
+            margin-left: 30px;
         }
 
     </style>
@@ -260,31 +281,49 @@
 
     </div>
 
-    <!-- BANDE BLANCHE CONTACT -->
+    <!-- BANDE BLANCHE CONTACT AVEC LIENS MAPS, TEL, MAIL -->
     <footer id="contact">
         <div class="contact-container">
             
+            <!-- COLONNE 1 -->
             <div class="contact-column">
                 <h3>Contactez-nous</h3>
-                <p><span>🌐</span> www.counselingbiblique.org</p>
-                <p><span>👤</span> David Bouvier</p>
-                <p><span>✉</span> info@counselingbiblique.org</p>
-                <p><span>📱</span> +41 76 483 40 56</p>
+                <a href="https://www.counselingbiblique.org" target="_blank">
+                    <span class="icon">🌐</span> www.counselingbiblique.org
+                </a>
+                <p><span class="icon">👤</span> David Bouvier</p>
+                <a href="mailto:info@counselingbiblique.org">
+                    <span class="icon">✉</span> info@counselingbiblique.org
+                </a>
+                <a href="tel:+41764834056">
+                    <span class="icon">📱</span> +41 76 483 40 56
+                </a>
             </div>
 
+            <!-- COLONNE 2 -->
             <div class="contact-column">
                 <h3>Centre de counseling</h3>
-                <p><span>📍</span> (Eglise Evangélique Action Biblique)</p>
-                <span class="address-detail">Rue de la Servette 21</span>
-                <span class="address-detail">1201 Genève</span>
-                <span class="address-detail">Suisse</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Rue+de+la+Servette+21+1201+Genève" target="_blank" class="contact-info-group">
+                    <p style="margin:0;"><span class="icon">📍</span> (Eglise Action Biblique)</p>
+                    <div class="address-block">
+                        Rue de la Servette 21<br>
+                        1201 Genève<br>
+                        Suisse
+                    </div>
+                </a>
             </div>
 
+            <!-- COLONNE 3 -->
             <div class="contact-column">
                 <h3>Siège social</h3>
-                <p>Route de la Capite 120</p>
-                <p>1253 Vandoeuvres</p>
-                <p>Suisse</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Route+de+la+Capite+120+1253+Vandoeuvres" target="_blank" class="contact-info-group">
+                    <p style="margin:0;"><span class="icon">🏠</span> Adresse du siège</p>
+                    <div class="address-block">
+                        Route de la Capite 120<br>
+                        1253 Vandoeuvres<br>
+                        Suisse
+                    </div>
+                </a>
             </div>
 
         </div>
