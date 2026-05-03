@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACB - Association du Counseling Biblique</title>
     
+    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="images/favicon.png">
 
     <style>
@@ -21,6 +22,7 @@
             --font-family: 'Metropolis', sans-serif;
             --accent-color: #ed6d5f;
             --bg-glass: rgba(255, 255, 255, 0.95);
+            --transition: all 0.3s ease;
         }
 
         html { scroll-behavior: smooth; }
@@ -34,6 +36,7 @@
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* 2. HEADER ET NAVIGATION */
@@ -44,7 +47,7 @@
             width: 100%;
             background-color: white;
             z-index: 1000;
-            padding: 15px 0;
+            padding: 20px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
@@ -54,51 +57,59 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 25px;
+            padding: 0 40px;
         }
 
-        .logo-box img { height: 45px; display: block; }
+        .logo-box img {
+            height: 50px;
+            display: block;
+        }
 
-        /* MENU BURGER (Caché par défaut sur PC) */
+        /* BOUTON HAMBURGER (Caché sur PC) */
         .menu-toggle {
             display: none;
             flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
             border: none;
-            padding: 10px;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1100;
         }
 
         .menu-toggle span {
-            display: block;
-            width: 25px;
+            width: 100%;
             height: 3px;
             background-color: var(--main-color);
-            transition: 0.3s;
+            border-radius: 10px;
+            transition: var(--transition);
         }
 
-        /* LIENS DE NAVIGATION PC */
+        /* NAVIGATION LINKS */
         .nav-links {
             display: flex;
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 25px;
+            gap: 30px;
         }
+
+        .nav-item { position: relative; }
 
         .nav-link {
             text-decoration: none;
             color: var(--main-color);
             font-size: 15px;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
+            cursor: pointer;
         }
 
         .nav-link:hover { color: var(--accent-color); }
 
         /* SOUS-MENU MISSION */
-        .nav-item { position: relative; }
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -106,101 +117,182 @@
             left: 0;
             background-color: white;
             list-style: none;
-            padding: 15px;
+            margin: 15px 0 0 0;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 200px;
+            min-width: 220px;
         }
-        .nav-item:hover .dropdown-menu { display: block; }
+
         .dropdown-item a {
             text-decoration: none;
             color: var(--main-color);
             font-size: 14px;
             display: block;
             padding: 8px 0;
+            transition: var(--transition);
         }
+
+        .dropdown-item a:hover { 
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        /* Affichage au survol sur PC */
+        .nav-item:hover .dropdown-menu { display: block; }
 
         /* 3. STRUCTURE DES SECTIONS */
         .main-column {
             width: 90%;
             max-width: 800px;
             margin: 0 auto;
-            padding-top: 120px; 
+            padding-top: 140px; 
         }
 
-        section { min-height: 60vh; display: flex; align-items: center; padding: 40px 0; }
+        section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 0;
+        }
 
         .glass-panel {
             background: var(--bg-glass);
-            padding: 40px;
+            padding: 60px 40px;
             text-align: center;
             width: 100%;
-            border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 12px;
         }
 
-        h2 { color: var(--main-color); font-size: 2em; margin-bottom: 20px; }
-        p { line-height: 1.6; font-size: 1.05em; color: #555; }
+        h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
+        p { line-height: 1.8; font-size: 1.1em; color: #555; }
 
-        /* FOOTER */
-        footer#contact { background-color: white; padding: 60px 0; margin-top: 60px; }
+        .newsletter-box {
+            border: 2px solid var(--main-color);
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 8px;
+            background: rgba(44, 76, 100, 0.03);
+        }
+
+        .btn-newsletter {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background-color: var(--main-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-newsletter:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* 4. FOOTER */
+        footer#contact {
+            width: 100%;
+            background-color: white;
+            padding: 80px 0;
+            margin-top: 80px;
+        }
+
         .contact-container {
             max-width: 1100px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            padding: 0 30px;
-            gap: 30px;
+            gap: 40px;
+            padding: 0 40px;
         }
-        .contact-column { flex: 1; min-width: 200px; }
-        .contact-column h3 { color: var(--main-color); font-size: 17px; margin-bottom: 15px; }
-        .address-stack { display: flex; flex-direction: column; font-size: 14px; color: #555; }
+
+        .contact-column { flex: 1; min-width: 250px; }
+
+        .contact-column h3 {
+            color: var(--main-color);
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .contact-column a, .contact-column p {
+            font-size: 14px;
+            color: #555;
+            margin: 12px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .address-stack { display: flex; flex-direction: column; gap: 2px; }
+
+        .icon { color: var(--main-color); min-width: 20px; text-align: center; }
 
         /* =============================================
-           4. ADAPTATION TÉLÉPHONE (MOBILE ONLY)
+           5. ADAPTATION TÉLÉPHONE (MOBILE)
         ============================================= */
         @media (max-width: 768px) {
             
-            /* Réduction des tailles globales */
-            h2 { font-size: 1.6em; }
-            p { font-size: 0.95em; }
-            .glass-panel { padding: 30px 20px; }
+            /* Ajustements tailles de texte */
+            h2 { font-size: 1.7em; }
+            p { font-size: 1em; }
             .main-column { padding-top: 100px; }
+            .glass-panel { padding: 40px 20px; }
 
-            /* Affichage du bouton Hamburger */
+            /* Affichage bouton menu */
             .menu-toggle { display: flex; }
 
-            /* Le menu devient vertical et caché par défaut */
+            /* Navigation mobile */
             .nav-links {
-                display: none; /* Caché */
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
+                position: fixed;
+                top: 0;
+                right: -100%; /* Caché à droite */
+                height: 100vh;
+                width: 70%;
                 background-color: white;
-                padding: 20px 0;
-                text-align: center;
-                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
-                gap: 15px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.4s ease-in-out;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             }
 
-            /* Classe ajoutée par JS pour montrer le menu */
-            .nav-links.active { display: flex; }
+            .nav-links.active { right: 0; } /* Affiché */
 
-            /* Sous-menu en mobile */
+            /* Sous-menu simplifié sur mobile */
             .dropdown-menu {
                 position: static;
+                display: block;
                 box-shadow: none;
-                background: #f9f9f9;
-                display: block; /* Toujours visible dans le menu mobile pour simplifier */
                 padding: 10px 0;
+                text-align: center;
+                margin: 0;
+                background: transparent;
             }
 
-            /* Footer en colonne sur mobile */
-            .contact-container { flex-direction: column; align-items: center; text-align: center; }
-            .contact-column h3 { text-align: center; }
-            .contact-column a, .contact-column p { justify-content: center; }
+            /* Footer en colonne */
+            .contact-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 50px;
+            }
+
+            .contact-column a, .contact-column p {
+                justify-content: center;
+            }
+
+            /* Animation Hamburger vers Croix */
+            .menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
         }
 
     </style>
@@ -214,22 +306,22 @@
             </div>
 
             <!-- Bouton Hamburger -->
-            <button class="menu-toggle" id="mobile-menu">
+            <button class="menu-toggle" id="btn-hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
             <nav>
-                <ul class="nav-links" id="nav-list">
+                <ul class="nav-links" id="nav-menu">
                     <li><a href="#presentation" class="nav-link">Présentation</a></li>
                     
                     <li class="nav-item">
                         <span class="nav-link">Mission ▾</span>
                         <ul class="dropdown-menu">
-                            <li><a href="#formations">Formations</a></li>
-                            <li><a href="#soutien">Soutien aux églises</a></li>
-                            <li><a href="#accompagnement">Accompagnement</a></li>
+                            <li class="dropdown-item"><a href="#formations">Formations</a></li>
+                            <li class="dropdown-item"><a href="#soutien">Soutien aux églises</a></li>
+                            <li class="dropdown-item"><a href="#accompagnement">Accompagnement</a></li>
                         </ul>
                     </li>
 
@@ -242,54 +334,111 @@
     </header>
 
     <div class="main-column">
-        <!-- Tes sections restent ici -->
+        
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
                 <p>L'Association du Counseling Biblique (ACB) œuvre pour la promotion du soin de l'âme à travers les Écritures.</p>
             </div>
         </section>
-        <!-- ... (les autres sections sont identiques) ... -->
+
+        <section id="formations">
+            <div class="glass-panel">
+                <h2>Nos Formations</h2>
+                <p>Découvrez nos parcours de formation pour équiper chaque croyant dans l'accompagnement biblique.</p>
+            </div>
+        </section>
+
+        <section id="soutien">
+            <div class="glass-panel">
+                <h2>Soutien aux églises</h2>
+                <p>Nous aidons les églises locales à mettre en place des ministères de relation d'aide biblique.</p>
+            </div>
+        </section>
+
+        <section id="accompagnement">
+            <div class="glass-panel">
+                <h2>Accompagnement</h2>
+                <p>Un soutien biblique pour traverser les épreuves de la vie avec l'espérance de l'Évangile.</p>
+            </div>
+        </section>
+
+        <section id="soutenir">
+            <div class="glass-panel">
+                <h2>Nous soutenir</h2>
+                <p>Votre engagement permet à l'association de continuer sa mission auprès du plus grand nombre.</p>
+            </div>
+        </section>
+
+        <section id="newsletter">
+            <div class="glass-panel">
+                <h2>Restez informé</h2>
+                <div class="newsletter-box">
+                    <p>Inscrivez-vous à notre newsletter pour recevoir les actualités de l'association.</p>
+                    <a href="#" target="_blank" class="btn-newsletter">M'inscrire à la Newsletter</a>
+                </div>
+            </div>
+        </section>
+        
     </div>
 
     <footer id="contact">
         <div class="contact-container">
+            
             <div class="contact-column">
-                <h3>Contactez-nous</h3>
-                <p>🌐 www.counselingbiblique.org</p>
-                <p>✉ info@counselingbiblique.org</p>
+                <h3>Contact</h3>
+                <a href="mailto:info@counselingbiblique.org">
+                    <span class="icon">✉</span> info@counselingbiblique.org
+                </a>
+                <a href="tel:+41764834056">
+                    <span class="icon">📱</span> +41 76 483 40 56
+                </a>
             </div>
+
             <div class="contact-column">
                 <h3>Centre de counseling</h3>
-                <div class="address-stack">
-                    <strong>Eglise Action Biblique</strong>
-                    <span>Rue de la Servette 21, Genève</span>
-                </div>
+                <a href="#" target="_blank">
+                    <span class="icon">📍</span>
+                    <div class="address-stack">
+                        <strong>Eglise Action Biblique</strong>
+                        <span>Rue de la Servette 21</span>
+                        <span>1201 Genève</span>
+                    </div>
+                </a>
             </div>
+
+            <div class="contact-column">
+                <h3>Siège social</h3>
+                <a href="#" target="_blank">
+                    <span class="icon">🏠</span>
+                    <div class="address-stack">
+                        <strong>Vandoeuvres</strong>
+                        <span>Route de la Capite 120</span>
+                        <span>1253 Vandoeuvres</span>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </footer>
 
-    <!-- SCRIPT POUR OUVRIR LE MENU MOBILE -->
+    <!-- JAVASCRIPT POUR LE MENU MOBILE -->
     <script>
-        const menuBtn = document.getElementById('mobile-menu');
-        const navList = document.getElementById('nav-list');
+        const btnHamburger = document.getElementById('btn-hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-        menuBtn.addEventListener('click', () => {
-            navList.classList.toggle('active');
-            
-            // Animation optionnelle des barres du menu
-            const spans = menuBtn.querySelectorAll('span');
-            spans[0].style.transform = navList.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-            spans[1].style.opacity = navList.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = navList.classList.contains('active') ? 'rotate(-45deg) translate(7px, -7px)' : 'none';
+        // Ouvrir/Fermer le menu au clic sur le bouton
+        btnHamburger.addEventListener('click', () => {
+            btnHamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
 
         // Fermer le menu quand on clique sur un lien
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('active');
-            });
-        });
+        navLinks.forEach(n => n.addEventListener('click', () => {
+            btnHamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
     </script>
 
 </body>
