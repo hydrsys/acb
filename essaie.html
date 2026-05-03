@@ -53,7 +53,7 @@
         .navbar-container {
             display: flex;
             align-items: center;
-            justify-content: center; /* Centrage menu sur PC */
+            justify-content: center;
             padding: 0 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -70,7 +70,7 @@
             display: block;
         }
 
-        /* LOGIQUE MENU BURGER (Invisible sur PC) */
+        /* LOGIQUE MENU BURGER */
         #mobile-menu-check { display: none; }
 
         .menu-toggle {
@@ -161,7 +161,6 @@
         }
 
         h2 { color: var(--main-color); font-size: 2em; margin-bottom: 20px; }
-        p { line-height: 1.7; color: #555; }
 
         /* 4. FOOTER */
         footer#contact {
@@ -180,7 +179,6 @@
             padding: 0 20px;
         }
 
-        .contact-column { flex: 1; }
         .contact-column h3 { color: var(--main-color); margin-bottom: 25px; font-size: 18px; }
 
         .contact-column a, .contact-column p {
@@ -191,26 +189,17 @@
             color: #555;
             font-size: 14px;
             margin: 12px 0;
-            line-height: 1.5;
         }
 
         .address-stack { display: flex; flex-direction: column; }
         .icon { width: 20px; text-align: center; color: var(--main-color); }
 
-        /* =============================================
-           5. ADAPTATION MOBILE (RÉPARATION BURGER)
-        ============================================= */
+        /* 5. ADAPTATION MOBILE */
         @media (max-width: 900px) {
-            .navbar-container {
-                justify-content: space-between;
-                padding: 0 20px;
-            }
-
+            .navbar-container { justify-content: space-between; padding: 0 20px; }
             .logo-box { position: static; }
+            .menu-toggle { display: flex; }
 
-            .menu-toggle { display: flex; } /* Affiche le burger */
-
-            /* Menu caché par défaut sur mobile */
             nav {
                 display: none; 
                 position: absolute;
@@ -221,42 +210,20 @@
                 box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             }
 
-            .nav-links {
-                flex-direction: column;
-                gap: 0;
-            }
-
+            .nav-links { flex-direction: column; gap: 0; }
             .nav-links li { width: 100%; text-align: center; }
+            .nav-link { display: block; padding: 18px; border-bottom: 1px solid #f5f5f5; }
 
-            .nav-link {
-                display: block;
-                padding: 18px;
-                border-bottom: 1px solid #f5f5f5;
-            }
+            #mobile-menu-check:checked ~ nav { display: block; }
 
-            /* ACTION : SI CHECKBOX COCHÉE -> MONTRER LE NAV */
-            #mobile-menu-check:checked ~ nav {
-                display: block;
-            }
-
-            /* Animation du Burger en X */
             #mobile-menu-check:checked + .menu-toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             #mobile-menu-check:checked + .menu-toggle span:nth-child(2) { opacity: 0; }
             #mobile-menu-check:checked + .menu-toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            /* Sous-menu mobile */
-            .dropdown-menu {
-                position: static;
-                box-shadow: none;
-                background-color: #fafafa;
-                width: 100%;
-                padding: 10px 0;
-            }
+            .dropdown-menu { position: static; box-shadow: none; background-color: #fafafa; width: 100%; padding: 10px 0; }
 
-            /* Footer Mobile : Adresses sous les icônes */
             .main-column { width: 90%; }
             .contact-container { flex-direction: column; align-items: center; text-align: center; }
-            .contact-column h3 { text-align: center; }
             .contact-column a, .contact-column p { flex-direction: column; align-items: center; }
             .address-stack { align-items: center; }
         }
@@ -270,7 +237,6 @@
                 <img src="images/logo.png" alt="Logo ACB">
             </div>
 
-            <!-- Bouton Burger (Invisible sur PC) -->
             <input type="checkbox" id="mobile-menu-check">
             <label for="mobile-menu-check" class="menu-toggle">
                 <span></span>
@@ -278,11 +244,9 @@
                 <span></span>
             </label>
 
-            <!-- Navigation -->
             <nav>
                 <ul class="nav-links">
                     <li><a href="#presentation" class="nav-link">Présentation</a></li>
-                    
                     <li class="nav-item">
                         <input type="checkbox" id="mission-toggle">
                         <label for="mission-toggle" class="nav-link">Mission ▾</label>
@@ -292,7 +256,6 @@
                             <li class="dropdown-item"><a href="#accompagnement">Accompagnement</a></li>
                         </ul>
                     </li>
-
                     <li><a href="#soutenir" class="nav-link">Nous soutenir</a></li>
                     <li><a href="#newsletter" class="nav-link">Newsletter</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -302,7 +265,6 @@
     </header>
 
     <div class="main-column">
-        
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
@@ -344,12 +306,10 @@
                 <p>Restez informé de nos activités et formations.</p>
             </div>
         </section>
-        
     </div>
 
     <footer id="contact">
         <div class="contact-container">
-            
             <div class="contact-column">
                 <h3>Contact</h3>
                 <a href="https://www.counselingbiblique.org" target="_blank"><span class="icon">🌐</span> www.counselingbiblique.org</a>
@@ -383,9 +343,22 @@
                     </div>
                 </a>
             </div>
-
         </div>
     </footer>
+
+    <!-- SCRIPT POUR FERMER LE MENU AU CLIC -->
+    <script>
+        // Sélectionne tous les liens du menu
+        const navLinks = document.querySelectorAll('.nav-link, .dropdown-item a');
+        const menuCheck = document.getElementById('mobile-menu-check');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Décoche la case pour fermer le menu mobile
+                menuCheck.checked = false;
+            });
+        });
+    </script>
 
 </body>
 </html>
