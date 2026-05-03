@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACB - Association du Counseling Biblique</title>
+    
+    <!-- CHANGEMENT DU FAVICON (Modifie le nom du fichier images/ ici) -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
     <style>
         /* 1. POLICE ET VARIABLES */
         @font-face {
@@ -52,7 +56,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 60px;
+            padding: 0 40px;
             position: relative;
         }
 
@@ -71,7 +75,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 35px;
+            gap: 30px; /* Réduit pour accommoder le nouvel onglet */
         }
 
         .nav-item { position: relative; }
@@ -83,6 +87,7 @@
             font-weight: 500;
             cursor: pointer;
             transition: color 0.3s;
+            white-space: nowrap;
         }
 
         .nav-link:hover { color: var(--accent-color); }
@@ -254,8 +259,8 @@
                         </ul>
                     </li>
 
-                    <li><a href="#newsletter" class="nav-link">Newsletter</a></li>
                     <li><a href="#soutenir" class="nav-link">Nous soutenir</a></li>
+                    <li><a href="#newsletter" class="nav-link">Newsletter</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
@@ -268,18 +273,6 @@
             <div class="glass-panel">
                 <h2>Présentation</h2>
                 <p>L'Association du Counseling Biblique (ACB) œuvre pour la promotion du soin de l'âme à travers les Écritures.</p>
-            </div>
-        </section>
-
-        <!-- NOUVELLE SECTION NEWSLETTER -->
-        <section id="newsletter">
-            <div class="glass-panel">
-                <h2>Restez informé</h2>
-                <div class="newsletter-box">
-                    <p>Inscrivez-vous à notre newsletter pour recevoir régulièrement des ressources, les actualités de l'association et les dates de nos prochaines formations directement dans votre boîte mail.</p>
-                    <!-- Remplace le # ci-dessous par ton lien d'inscription -->
-                    <a href="#" target="_blank" class="btn-newsletter">M'inscrire à la Newsletter</a>
-                </div>
             </div>
         </section>
 
@@ -308,6 +301,17 @@
             <div class="glass-panel">
                 <h2>Nous soutenir</h2>
                 <p>Votre engagement permet à l'association de continuer sa mission auprès du plus grand nombre.</p>
+            </div>
+        </section>
+        
+                <!-- NOUVELLE SECTION NEWSLETTER -->
+        <section id="newsletter">
+            <div class="glass-panel">
+                <h2>Restez informé</h2>
+                <div class="newsletter-box">
+                    <p>Inscrivez-vous à notre newsletter pour recevoir régulièrement des ressources, les actualités de l'association et les dates de nos prochaines formations directement dans votre boîte mail.</p>
+                    <a href="#" target="_blank" class="btn-newsletter">M'inscrire à la Newsletter</a>
+                </div>
             </div>
         </section>
 
