@@ -71,7 +71,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 40px;
+            gap: 35px;
         }
 
         .nav-item { position: relative; }
@@ -79,7 +79,7 @@
         .nav-link {
             text-decoration: none;
             color: var(--main-color);
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             cursor: pointer;
             transition: color 0.3s;
@@ -146,6 +146,32 @@
         h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
         p { line-height: 1.8; font-size: 1.05em; color: #555; }
 
+        /* BOX NEWSLETTER SPÉCIFIQUE */
+        .newsletter-box {
+            border: 2px solid var(--main-color);
+            padding: 40px;
+            margin-top: 30px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-newsletter {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 35px;
+            background-color: var(--main-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-newsletter:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
         /* 4. FOOTER BANDE BLANCHE OPTIMISÉ */
         footer#contact {
             width: 100%;
@@ -177,7 +203,6 @@
             text-align: left;
         }
 
-        /* Style général des textes et liens du footer */
         .contact-column a, .contact-column p {
             font-size: 14px;
             color: #555;
@@ -193,12 +218,6 @@
 
         .contact-column a:hover {
             color: var(--accent-color);
-        }
-
-        .contact-info-group {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
         }
 
         .icon {
@@ -236,6 +255,7 @@
                     </li>
 
                     <li><a href="#soutenir" class="nav-link">Nous soutenir</a></li>
+                    <li><a href="#newsletter" class="nav-link">Newsletter</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
@@ -279,13 +299,23 @@
             </div>
         </section>
 
+        <!-- NOUVELLE SECTION NEWSLETTER -->
+        <section id="newsletter">
+            <div class="glass-panel">
+                <h2>Restez informé</h2>
+                <div class="newsletter-box">
+                    <p>Inscrivez-vous à notre newsletter pour recevoir régulièrement des ressources, les actualités de l'association et les dates de nos prochaines formations directement dans votre boîte mail.</p>
+                    <!-- Remplace le # ci-dessous par ton lien d'inscription -->
+                    <a href="#" target="_blank" class="btn-newsletter">M'inscrire à la Newsletter</a>
+                </div>
+            </div>
+        </section>
+        
     </div>
 
-    <!-- BANDE BLANCHE CONTACT AVEC LIENS MAPS, TEL, MAIL -->
     <footer id="contact">
         <div class="contact-container">
             
-            <!-- COLONNE 1 -->
             <div class="contact-column">
                 <h3>Contactez-nous</h3>
                 <a href="https://www.counselingbiblique.org" target="_blank">
@@ -300,7 +330,6 @@
                 </a>
             </div>
 
-            <!-- COLONNE 2 -->
             <div class="contact-column">
                 <h3>Centre de counseling</h3>
                 <a href="https://www.google.com/maps/search/?api=1&query=Rue+de+la+Servette+21+1201+Genève" target="_blank" class="contact-info-group">
@@ -313,7 +342,6 @@
                 </a>
             </div>
 
-            <!-- COLONNE 3 -->
             <div class="contact-column">
                 <h3>Siège social</h3>
                 <a href="https://www.google.com/maps/search/?api=1&query=Route+de+la+Capite+120+1253+Vandoeuvres" target="_blank" class="contact-info-group">
