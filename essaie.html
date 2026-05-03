@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACB - Association du Counseling Biblique</title>
     
-    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="images/favicon.png">
 
     <style>
@@ -33,7 +32,7 @@
             font-family: var(--font-family);
             color: #333;
             background-image: url('images/fond.png');
-            background-attachment: fixed;
+            background-attachment: fixed; /* Fixé sur PC */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -60,12 +59,8 @@
             padding: 0 40px;
         }
 
-        .logo-box img {
-            height: 50px;
-            display: block;
-        }
+        .logo-box img { height: 50px; display: block; }
 
-        /* BOUTON HAMBURGER (Caché sur PC) */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -75,7 +70,6 @@
             background: transparent;
             border: none;
             cursor: pointer;
-            padding: 0;
             z-index: 1100;
         }
 
@@ -83,11 +77,9 @@
             width: 100%;
             height: 3px;
             background-color: var(--main-color);
-            border-radius: 10px;
             transition: var(--transition);
         }
 
-        /* NAVIGATION LINKS */
         .nav-links {
             display: flex;
             list-style: none;
@@ -104,12 +96,10 @@
             font-size: 15px;
             font-weight: 500;
             transition: var(--transition);
-            cursor: pointer;
         }
 
         .nav-link:hover { color: var(--accent-color); }
 
-        /* SOUS-MENU MISSION */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -130,18 +120,11 @@
             font-size: 14px;
             display: block;
             padding: 8px 0;
-            transition: var(--transition);
         }
 
-        .dropdown-item a:hover { 
-            color: var(--accent-color);
-            transform: translateX(5px);
-        }
-
-        /* Affichage au survol sur PC */
         .nav-item:hover .dropdown-menu { display: block; }
 
-        /* 3. STRUCTURE DES SECTIONS */
+        /* 3. STRUCTURE */
         .main-column {
             width: 90%;
             max-width: 800px;
@@ -149,114 +132,49 @@
             padding-top: 140px; 
         }
 
-        section {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 0;
-        }
+        section { min-height: 80vh; display: flex; align-items: center; padding: 60px 0; }
 
         .glass-panel {
             background: var(--bg-glass);
             padding: 60px 40px;
             text-align: center;
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border-radius: 12px;
         }
 
         h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
-        p { line-height: 1.8; font-size: 1.1em; color: #555; }
-
-        .newsletter-box {
-            border: 2px solid var(--main-color);
-            padding: 30px;
-            margin-top: 30px;
-            border-radius: 8px;
-            background: rgba(44, 76, 100, 0.03);
-        }
-
-        .btn-newsletter {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 14px 30px;
-            background-color: var(--main-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .btn-newsletter:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
 
         /* 4. FOOTER */
-        footer#contact {
-            width: 100%;
-            background-color: white;
-            padding: 80px 0;
-            margin-top: 80px;
-        }
-
+        footer#contact { background-color: white; padding: 80px 0; margin-top: 80px; }
         .contact-container {
             max-width: 1100px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            gap: 40px;
             padding: 0 40px;
         }
-
-        .contact-column { flex: 1; min-width: 250px; }
-
-        .contact-column h3 {
-            color: var(--main-color);
-            font-size: 18px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .contact-column a, .contact-column p {
-            font-size: 14px;
-            color: #555;
-            margin: 12px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            text-decoration: none;
-            line-height: 1.6;
-        }
-
-        .address-stack { display: flex; flex-direction: column; gap: 2px; }
-
-        .icon { color: var(--main-color); min-width: 20px; text-align: center; }
+        .contact-column { flex: 1; }
+        .address-stack { display: flex; flex-direction: column; }
 
         /* =============================================
-           5. ADAPTATION TÉLÉPHONE (MOBILE)
+           5. ADAPTATION TÉLÉPHONE (CORRECTIONS)
         ============================================= */
         @media (max-width: 768px) {
             
-            /* Ajustements tailles de texte */
-            h2 { font-size: 1.7em; }
-            p { font-size: 1em; }
-            .main-column { padding-top: 100px; }
-            .glass-panel { padding: 40px 20px; }
+            /* FIX FOND ZOOMÉ : On désactive le background-attachment fixed sur mobile */
+            body {
+                background-attachment: scroll; 
+                background-size: cover;
+            }
 
-            /* Affichage bouton menu */
             .menu-toggle { display: flex; }
 
-            /* Navigation mobile */
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: -100%; /* Caché à droite */
+                right: -100%;
                 height: 100vh;
-                width: 70%;
+                width: 75%;
                 background-color: white;
                 flex-direction: column;
                 align-items: center;
@@ -265,31 +183,19 @@
                 box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             }
 
-            .nav-links.active { right: 0; } /* Affiché */
+            .nav-links.active { right: 0; }
 
-            /* Sous-menu simplifié sur mobile */
             .dropdown-menu {
                 position: static;
                 display: block;
                 box-shadow: none;
                 padding: 10px 0;
                 text-align: center;
-                margin: 0;
-                background: transparent;
             }
 
-            /* Footer en colonne */
-            .contact-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 50px;
-            }
+            .contact-container { flex-direction: column; text-align: center; gap: 40px; }
 
-            .contact-column a, .contact-column p {
-                justify-content: center;
-            }
-
-            /* Animation Hamburger vers Croix */
+            /* Animation croix */
             .menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
@@ -305,7 +211,6 @@
                 <img src="images/logo.png" alt="Logo ACB">
             </div>
 
-            <!-- Bouton Hamburger -->
             <button class="menu-toggle" id="btn-hamburger">
                 <span></span>
                 <span></span>
@@ -319,9 +224,10 @@
                     <li class="nav-item">
                         <span class="nav-link">Mission ▾</span>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="#formations">Formations</a></li>
-                            <li class="dropdown-item"><a href="#soutien">Soutien aux églises</a></li>
-                            <li class="dropdown-item"><a href="#accompagnement">Accompagnement</a></li>
+                            <!-- Ajout de la classe close-on-click ici -->
+                            <li class="dropdown-item"><a href="#formations" class="sub-link">Formations</a></li>
+                            <li class="dropdown-item"><a href="#soutien" class="sub-link">Soutien aux églises</a></li>
+                            <li class="dropdown-item"><a href="#accompagnement" class="sub-link">Accompagnement</a></li>
                         </ul>
                     </li>
 
@@ -334,7 +240,6 @@
     </header>
 
     <div class="main-column">
-        
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
@@ -345,28 +250,28 @@
         <section id="formations">
             <div class="glass-panel">
                 <h2>Nos Formations</h2>
-                <p>Découvrez nos parcours de formation pour équiper chaque croyant dans l'accompagnement biblique.</p>
+                <p>Équipez-vous pour l'accompagnement biblique.</p>
             </div>
         </section>
 
         <section id="soutien">
             <div class="glass-panel">
                 <h2>Soutien aux églises</h2>
-                <p>Nous aidons les églises locales à mettre en place des ministères de relation d'aide biblique.</p>
+                <p>Aide aux églises locales.</p>
             </div>
         </section>
 
         <section id="accompagnement">
             <div class="glass-panel">
                 <h2>Accompagnement</h2>
-                <p>Un soutien biblique pour traverser les épreuves de la vie avec l'espérance de l'Évangile.</p>
+                <p>Un soutien biblique pour les épreuves.</p>
             </div>
         </section>
 
         <section id="soutenir">
             <div class="glass-panel">
                 <h2>Nous soutenir</h2>
-                <p>Votre engagement permet à l'association de continuer sa mission auprès du plus grand nombre.</p>
+                <p>Participez à la mission.</p>
             </div>
         </section>
 
@@ -374,71 +279,49 @@
             <div class="glass-panel">
                 <h2>Restez informé</h2>
                 <div class="newsletter-box">
-                    <p>Inscrivez-vous à notre newsletter pour recevoir les actualités de l'association.</p>
-                    <a href="#" target="_blank" class="btn-newsletter">M'inscrire à la Newsletter</a>
+                    <p>Inscrivez-vous à notre newsletter.</p>
+                    <a href="#" class="btn-newsletter">M'inscrire</a>
                 </div>
             </div>
         </section>
-        
     </div>
 
     <footer id="contact">
         <div class="contact-container">
-            
             <div class="contact-column">
                 <h3>Contact</h3>
-                <a href="mailto:info@counselingbiblique.org">
-                    <span class="icon">✉</span> info@counselingbiblique.org
-                </a>
-                <a href="tel:+41764834056">
-                    <span class="icon">📱</span> +41 76 483 40 56
-                </a>
+                <p>✉ info@counselingbiblique.org</p>
             </div>
-
             <div class="contact-column">
-                <h3>Centre de counseling</h3>
-                <a href="#" target="_blank">
-                    <span class="icon">📍</span>
-                    <div class="address-stack">
-                        <strong>Eglise Action Biblique</strong>
-                        <span>Rue de la Servette 21</span>
-                        <span>1201 Genève</span>
-                    </div>
-                </a>
+                <h3>Centre</h3>
+                <div class="address-stack">
+                    <strong>Eglise Action Biblique</strong>
+                    <span>Rue de la Servette 21, Genève</span>
+                </div>
             </div>
-
-            <div class="contact-column">
-                <h3>Siège social</h3>
-                <a href="#" target="_blank">
-                    <span class="icon">🏠</span>
-                    <div class="address-stack">
-                        <strong>Vandoeuvres</strong>
-                        <span>Route de la Capite 120</span>
-                        <span>1253 Vandoeuvres</span>
-                    </div>
-                </a>
-            </div>
-
         </div>
     </footer>
 
-    <!-- JAVASCRIPT POUR LE MENU MOBILE -->
     <script>
         const btnHamburger = document.getElementById('btn-hamburger');
         const navMenu = document.getElementById('nav-menu');
-        const navLinks = document.querySelectorAll('.nav-link');
+        
+        // Sélectionne TOUS les liens (principaux et sous-menus)
+        const allLinks = document.querySelectorAll('.nav-link, .sub-link');
 
-        // Ouvrir/Fermer le menu au clic sur le bouton
+        // Bascule le menu
         btnHamburger.addEventListener('click', () => {
             btnHamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
 
-        // Fermer le menu quand on clique sur un lien
-        navLinks.forEach(n => n.addEventListener('click', () => {
-            btnHamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
+        // Ferme le menu dès qu'un lien est cliqué
+        allLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                btnHamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
     </script>
 
 </body>
