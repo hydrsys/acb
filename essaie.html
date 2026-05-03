@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACB - Association du Counseling Biblique</title>
     
-    <!-- CHANGEMENT DU FAVICON (Modifie le nom du fichier images/ ici) -->
+    <!-- CHANGEMENT DU FAVICON -->
     <link rel="icon" type="image/png" href="images/logo.png">
 
     <style>
@@ -75,7 +75,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 30px; /* Réduit pour accommoder le nouvel onglet */
+            gap: 30px;
         }
 
         .nav-item { position: relative; }
@@ -124,7 +124,7 @@
 
         #mission-toggle:checked ~ .dropdown-menu { display: block; }
 
-        /* 3. STRUCTURE DES SECTIONS (CENTRÉES) */
+        /* 3. STRUCTURE DES SECTIONS */
         .main-column {
             width: 50%;
             margin: 0 auto;
@@ -151,7 +151,6 @@
         h2 { color: var(--main-color); font-size: 2.2em; margin-bottom: 25px; }
         p { line-height: 1.8; font-size: 1.05em; color: #555; }
 
-        /* BOX NEWSLETTER SPÉCIFIQUE */
         .newsletter-box {
             border: 2px solid var(--main-color);
             padding: 40px;
@@ -177,7 +176,7 @@
             transform: translateY(-2px);
         }
 
-        /* 4. FOOTER BANDE BLANCHE OPTIMISÉ */
+        /* 4. FOOTER BANDE BLANCHE - ALIGNEMENT VERTICAL CORRIGÉ */
         footer#contact {
             width: 100%;
             background-color: white;
@@ -191,13 +190,13 @@
             margin: 0 auto;
             display: flex;
             justify-content: center;
-            gap: 60px;
+            gap: 80px;
             padding: 0 40px;
         }
 
         .contact-column {
             flex: 1;
-            min-width: 250px;
+            min-width: 200px;
         }
 
         .contact-column h3 {
@@ -208,16 +207,18 @@
             text-align: left;
         }
 
+        /* Force l'alignement vertical pour les liens d'adresse */
         .contact-column a, .contact-column p {
             font-size: 14px;
             color: #555;
-            margin: 12px 0;
+            margin: 15px 0;
             display: flex;
-            align-items: center;
+            flex-direction: row; /* Icône à côté du premier texte */
+            align-items: flex-start;
             gap: 10px;
             text-decoration: none;
             transition: color 0.3s;
-            line-height: 1.5;
+            line-height: 1.6;
             text-align: left;
         }
 
@@ -225,14 +226,18 @@
             color: var(--accent-color);
         }
 
+        /* Conteneur interne pour empiler les lignes d'adresse sous le titre */
+        .address-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
         .icon {
             font-size: 16px;
             width: 20px;
             text-align: center;
-        }
-
-        .address-block {
-            margin-left: 30px;
+            padding-top: 2px; /* Aligne l'icône avec la première ligne de texte */
         }
 
     </style>
@@ -259,8 +264,8 @@
                         </ul>
                     </li>
 
-                    <li><a href="#soutenir" class="nav-link">Nous soutenir</a></li>
                     <li><a href="#newsletter" class="nav-link">Newsletter</a></li>
+                    <li><a href="#soutenir" class="nav-link">Nous soutenir</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
@@ -276,6 +281,16 @@
             </div>
         </section>
 
+        <section id="newsletter">
+            <div class="glass-panel">
+                <h2>Restez informé</h2>
+                <div class="newsletter-box">
+                    <p>Inscrivez-vous à notre newsletter pour recevoir régulièrement des ressources et les actualités de l'association.</p>
+                    <a href="#" target="_blank" class="btn-newsletter">M'inscrire à la Newsletter</a>
+                </div>
+            </div>
+        </section>
+
         <section id="formations">
             <div class="glass-panel">
                 <h2>Nos Formations</h2>
@@ -286,7 +301,7 @@
         <section id="soutien">
             <div class="glass-panel">
                 <h2>Soutien aux églises</h2>
-                <p>Nous aidons les églises locales à mettre en place des ministères de relation d'aide biblique sains et durables.</p>
+                <p>Nous aidons les églises locales à mettre en place des ministères de relation d'aide biblique.</p>
             </div>
         </section>
 
@@ -303,23 +318,13 @@
                 <p>Votre engagement permet à l'association de continuer sa mission auprès du plus grand nombre.</p>
             </div>
         </section>
-        
-                <!-- NOUVELLE SECTION NEWSLETTER -->
-        <section id="newsletter">
-            <div class="glass-panel">
-                <h2>Restez informé</h2>
-                <div class="newsletter-box">
-                    <p>Inscrivez-vous à notre newsletter pour recevoir régulièrement des ressources, les actualités de l'association et les dates de nos prochaines formations directement dans votre boîte mail.</p>
-                    <a href="#" target="_blank" class="btn-newsletter">M'inscrire à la Newsletter</a>
-                </div>
-            </div>
-        </section>
 
     </div>
 
     <footer id="contact">
         <div class="contact-container">
             
+            <!-- COLONNE 1 -->
             <div class="contact-column">
                 <h3>Contactez-nous</h3>
                 <a href="https://www.counselingbiblique.org" target="_blank">
@@ -334,26 +339,30 @@
                 </a>
             </div>
 
+            <!-- COLONNE 2 -->
             <div class="contact-column">
                 <h3>Centre de counseling</h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Rue+de+la+Servette+21+1201+Genève" target="_blank" class="contact-info-group">
-                    <p style="margin:0;"><span class="icon">📍</span> (Eglise Action Biblique)</p>
-                    <div class="address-block">
-                        Rue de la Servette 21<br>
-                        1201 Genève<br>
-                        Suisse
+                <a href="https://www.google.com/maps/search/?api=1&query=Rue+de+la+Servette+21+1201+Genève" target="_blank">
+                    <span class="icon">📍</span>
+                    <div class="address-stack">
+                        <strong>(Eglise Action Biblique)</strong>
+                        <span>Rue de la Servette 21</span>
+                        <span>1201 Genève</span>
+                        <span>Suisse</span>
                     </div>
                 </a>
             </div>
 
+            <!-- COLONNE 3 -->
             <div class="contact-column">
                 <h3>Siège social</h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Route+de+la+Capite+120+1253+Vandoeuvres" target="_blank" class="contact-info-group">
-                    <p style="margin:0;"><span class="icon">🏠</span> Adresse du siège</p>
-                    <div class="address-block">
-                        Route de la Capite 120<br>
-                        1253 Vandoeuvres<br>
-                        Suisse
+                <a href="https://www.google.com/maps/search/?api=1&query=Route+de+la+Capite+120+1253+Vandoeuvres" target="_blank">
+                    <span class="icon">🏠</span>
+                    <div class="address-stack">
+                        <strong>Adresse du siège</strong>
+                        <span>Route de la Capite 120</span>
+                        <span>1253 Vandoeuvres</span>
+                        <span>Suisse</span>
                     </div>
                 </a>
             </div>
