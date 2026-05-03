@@ -56,7 +56,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 25px;
         }
 
         .logo-box img { height: 45px; display: block; }
@@ -90,16 +90,20 @@
 
         .nav-item { position: relative; }
 
-        .nav-link {
+        /* Style commun Menu et Sous-Menu */
+        .nav-link, .dropdown-item a {
             text-decoration: none;
             color: var(--main-color);
-            font-size: 15px;
+            font-family: var(--font-family);
             font-weight: 500;
+            transition: var(--transition);
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
+
+        .nav-link { font-size: 15px; display: flex; align-items: center; gap: 5px; }
+        .dropdown-item a { font-size: 15px; display: block; padding: 10px 0; }
+
+        .nav-link:hover, .dropdown-item a:hover { color: var(--accent-color); }
 
         /* SOUS-MENU (Desktop) */
         .dropdown-menu {
@@ -109,19 +113,11 @@
             left: 0;
             background-color: white;
             list-style: none;
-            padding: 15px;
+            padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 200px;
+            min-width: 220px;
             margin-top: 10px;
-        }
-
-        .dropdown-item a {
-            text-decoration: none;
-            color: var(--main-color);
-            font-size: 14px;
-            display: block;
-            padding: 8px 0;
         }
 
         /* 3. STRUCTURE */
@@ -134,51 +130,56 @@
 
         .glass-panel {
             background: var(--bg-glass);
-            padding: 40px 25px;
+            padding: 50px 30px;
             text-align: center;
             border-radius: 12px;
             margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         h2 { color: var(--main-color); font-size: 2em; margin-bottom: 20px; }
+        p { line-height: 1.7; color: #555; }
 
-        /* 4. FOOTER (CONTACT) - REFAIT POUR MOBILE */
+        /* 4. FOOTER (CONTACT) */
         footer#contact {
             background-color: white;
             padding: 60px 20px;
             margin-top: 60px;
-            border-top: 1px solid #eee;
         }
 
         .contact-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 40px;
         }
+
+        .contact-column { text-align: left; }
 
         .contact-column h3 {
             color: var(--main-color);
             font-size: 16px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .contact-column p, .contact-column a {
+        .contact-info {
             font-size: 14px;
             color: #555;
             text-decoration: none;
-            margin: 8px 0;
+            margin-bottom: 15px;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            line-height: 1.4;
+            gap: 12px;
+            line-height: 1.5;
         }
 
+        .icon { color: var(--main-color); font-size: 18px; }
+
         /* =============================================
-           5. MOBILE (CORECTIONS)
+           5. MOBILE (CORRECTIONS FINALES)
         ============================================= */
         @media (max-width: 768px) {
             
@@ -197,33 +198,38 @@
                 padding: 100px 30px;
                 transition: 0.4s ease;
                 box-shadow: -10px 0 20px rgba(0,0,0,0.1);
-                overflow-y: auto;
             }
 
             .nav-links.active { right: 0; }
 
-            /* SOUS-MENU MOBILE (ACCORDÉON) */
+            /* Sous-menu mobile : identique au menu principal */
             .dropdown-menu {
                 position: static;
-                display: none; /* Caché par défaut */
+                display: none;
                 box-shadow: none;
-                padding: 0 0 0 20px;
+                padding: 10px 0 10px 20px;
                 margin: 0;
+                background: #fdfdfd;
             }
-            
-            .dropdown-menu.open { display: block; } /* Classe pour ouvrir via JS */
+            .dropdown-menu.open { display: block; }
 
-            .nav-item { width: 100%; text-align: left; }
             .nav-link { font-size: 18px; padding: 15px 0; border-bottom: 1px solid #f0f0f0; width: 100%; justify-content: space-between; }
+            .dropdown-item a { font-size: 18px; padding: 12px 0; }
 
-            /* SECTION CONTACT MOBILE */
+            /* SECTION CONTACT MOBILE : Adresses SOUS les icônes */
             .contact-container {
-                grid-template-columns: 1fr; /* Une seule colonne */
+                grid-template-columns: 1fr;
                 text-align: center;
-                gap: 40px;
+                gap: 50px;
             }
 
-            .contact-column p, .contact-column a { justify-content: center; }
+            .contact-info {
+                flex-direction: column; /* Icône en haut, texte en bas */
+                align-items: center;
+                gap: 8px;
+            }
+
+            .contact-column h3 { text-align: center; }
 
             /* Animation Hamburger */
             .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
@@ -257,8 +263,7 @@
                     <li><a href="#presentation" class="nav-link">Présentation</a></li>
                     
                     <li class="nav-item">
-                        <!-- Ajout d'un ID pour le clic mobile -->
-                        <div class="nav-link" id="mission-btn">Mission <span style="font-size: 10px;">▼</span></div>
+                        <div class="nav-link" id="mission-btn">Mission <span>▼</span></div>
                         <ul class="dropdown-menu" id="mission-dropdown">
                             <li class="dropdown-item"><a href="#formations" class="close-menu">Formations</a></li>
                             <li class="dropdown-item"><a href="#soutien" class="close-menu">Soutien aux églises</a></li>
@@ -278,28 +283,85 @@
         <section id="presentation">
             <div class="glass-panel">
                 <h2>Présentation</h2>
-                <p>L'Association du Counseling Biblique (ACB) œuvre pour la promotion du soin de l'âme à travers les Écritures.</p>
+                <p>L'Association du Counseling Biblique (ACB) œuvre pour la promotion du soin de l'âme à travers les Écritures de manière compatissante et centrée sur l'Évangile.</p>
             </div>
         </section>
-        <!-- Les autres sections ici... -->
+
+        <section id="formations">
+            <div class="glass-panel">
+                <h2>Nos Formations</h2>
+                <p>Nous proposons des parcours rigoureux pour équiper les conseillers et les responsables d'église.</p>
+            </div>
+        </section>
+
+        <section id="soutien">
+            <div class="glass-panel">
+                <h2>Soutien aux églises</h2>
+                <p>L'ACB accompagne les communautés locales dans la mise en place de ministères de relation d'aide biblique sains.</p>
+            </div>
+        </section>
+
+        <section id="accompagnement">
+            <div class="glass-panel">
+                <h2>Accompagnement</h2>
+                <p>Trouvez une écoute et une direction biblique pour les défis complexes de la vie quotidienne.</p>
+            </div>
+        </section>
+
+        <section id="soutenir">
+            <div class="glass-panel">
+                <h2>Nous soutenir</h2>
+                <p>Votre générosité nous permet de produire des ressources et de former davantage de conseillers.</p>
+            </div>
+        </section>
+
+        <section id="newsletter">
+            <div class="glass-panel">
+                <h2>Newsletter</h2>
+                <p>Inscrivez-vous pour recevoir nos derniers articles et annonces d'événements.</p>
+            </div>
+        </section>
     </div>
 
     <footer id="contact">
         <div class="contact-container">
+            <!-- Colonne 1 -->
             <div class="contact-column">
                 <h3>Contact</h3>
-                <a href="mailto:info@counselingbiblique.org">✉ info@counselingbiblique.org</a>
-                <a href="tel:+41764834056">📱 +41 76 483 40 56</a>
+                <a href="mailto:info@counselingbiblique.org" class="contact-info">
+                    <span class="icon">✉</span> 
+                    <span>info@counselingbiblique.org</span>
+                </a>
+                <a href="tel:+41764834056" class="contact-info">
+                    <span class="icon">📱</span> 
+                    <span>+41 76 483 40 56</span>
+                </a>
             </div>
 
+            <!-- Colonne 2 -->
             <div class="contact-column">
                 <h3>Centre de counseling</h3>
-                <p>📍 <strong>Eglise Action Biblique</strong><br>Rue de la Servette 21<br>1201 Genève</p>
+                <div class="contact-info">
+                    <span class="icon">📍</span>
+                    <div style="display: flex; flex-direction: column;">
+                        <strong>Eglise Action Biblique</strong>
+                        <span>Rue de la Servette 21</span>
+                        <span>1201 Genève, Suisse</span>
+                    </div>
+                </div>
             </div>
 
+            <!-- Colonne 3 -->
             <div class="contact-column">
                 <h3>Siège social</h3>
-                <p>🏠 Route de la Capite 120<br>1253 Vandoeuvres<br>Suisse</p>
+                <div class="contact-info">
+                    <span class="icon">🏠</span>
+                    <div style="display: flex; flex-direction: column;">
+                        <strong>Association ACB</strong>
+                        <span>Route de la Capite 120</span>
+                        <span>1253 Vandoeuvres, Suisse</span>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -310,13 +372,13 @@
         const missionBtn = document.getElementById('mission-btn');
         const missionDropdown = document.getElementById('mission-dropdown');
 
-        // 1. Ouvrir le menu latéral
+        // Menu principal
         btnHamburger.addEventListener('click', () => {
             btnHamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
 
-        // 2. Gérer le sous-menu Mission (clic sur mobile)
+        // Sous-menu mobile au clic
         missionBtn.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.stopPropagation();
@@ -324,7 +386,7 @@
             }
         });
 
-        // 3. Fermer tout quand on clique sur un lien final
+        // Fermeture automatique
         document.querySelectorAll('.close-menu, .nav-link:not(#mission-btn)').forEach(link => {
             link.addEventListener('click', () => {
                 btnHamburger.classList.remove('active');
